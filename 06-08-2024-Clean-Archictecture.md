@@ -1,6 +1,6 @@
 #### Layered Architecture
 
-A standard way to architecture application is the layered architecture. Where we typically have four layers : Infrastructure {'<'}- Domain {'<'}- Business {'<'}- Presentation with the dependency following inwards and there is a close coupling between the levels
+A standard way to architecture application is the layered architecture. Where we typically have four layers : Infrastructure {'<-'} Domain {'<-'} Business {'<-'} Presentation with the dependency following inwards and there is a close coupling between the levels
 
 #### Clean Architecture
 
@@ -115,7 +115,7 @@ rm "Infrastructure\Persistence\Class1.cs"
 
 We then have to add in Service Extensions for Dependency Inversion.
 
-Notice that so far we have added Project References from (Application -{'>'} Domain), (Persistence -{'>'} Application) and (API -{'>'} Application & Persistence).
+Notice that so far we have added Project References from (Application {'->'} Domain), (Persistence {'->'} Application) and (API {'->'} Application & Persistence).
 
 (Note that according to Clean Architecture Presentation/API layer should not have dependency on the Infrastructure/Persistence layer, this reference is added just so that we have call the Service Extensions methods for the Infrastructure layer)
 
