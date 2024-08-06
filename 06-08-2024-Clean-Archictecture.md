@@ -1,3 +1,9 @@
+---
+title: Clean Architecture
+published: 2024-06-08
+description: Clean Architecture flips the dependency of traditional layered archictecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.
+---
+
 #### Layered Architecture
 
 A standard way to architecture application is the layered architecture. Where we typically have four layers : Infrastructure {'<-'} Domain {'<-'} Business {'<-'} Presentation with the dependency following inwards and there is a close coupling between the levels
