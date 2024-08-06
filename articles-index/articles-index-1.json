@@ -3,7 +3,7 @@
         "id": 1,
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 6/8/2024",
-        "content": "Clean Architecture flips the dependency of traditional layered archictecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
+        "content": "Clean Architecture flips the dependency of traditional layered architecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
         "link": "/06-08-2024-Clean-Architecture"
     }
 ]
