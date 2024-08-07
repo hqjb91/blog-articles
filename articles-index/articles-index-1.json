@@ -21,6 +21,62 @@
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
         "link": "/06-08-2024-Classless-Inter-Domain-Routing",
-        "isLastItem": true
+        "isLastItem": false
+    },
+    {
+        "id": 4,
+        "title": "Angular Basics",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A summarized notes on the basics of Angular.",
+        "link": "/07-08-2024-Angular-Basics",
+        "isLastItem": false
+    },
+    {
+        "id": 5,
+        "title": "Currying in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A summarized notes on how to implement the currying technique in Javascript.",
+        "link": "/07-08-2024-Currying-Javascript",
+        "isLastItem": false
+    },
+    {
+        "id": 6,
+        "title": "Debounce and Throttling in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A summarized notes on how to implement the debounce and throttling technique in Javascript. Debouncing and Throttling are used from rate limiting functions.",
+        "link": "/07-08-2024-Debounce-Throttle-Javascript",
+        "isLastItem": false
+    },
+    {
+        "id": 7,
+        "title": "Git Branching Strategy",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "An explanation of the commonly used Git Branching strategy. Trunk based and Git flow branching strategies are two popular git branching strategies employed.",
+        "link": "/07-08-2024-Git-Branching-Strategies",
+        "isLastItem": false
+    },
+    {
+        "id": 8,
+        "title": "NextJs Summary",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A very rudimentary summary of the basics of NextJs.",
+        "link": "/07-08-2024-NextJs-Summary",
+        "isLastItem": false
+    },
+    {
+        "id": 9,
+        "title": "Sorting Algorithms in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A brief summary of the relatively efficient sorting algorithms in Javascript. Merge and Quick sort basic implementations are shown in Javascript.",
+        "link": "/07-08-2024-Sorting-Algorithms-Javascript",
+        "isLastItem": false
+    },
+    {
+        "id": 10,
+        "title": "Spring Security OAuth 2.0",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "Notes on how to implement OAuth 2.0 using the Spring Framework in Java.",
+        "link": "/07-08-2024-Spring-Security-OAuth",
+        "isLastItem": false
     }
 ]
