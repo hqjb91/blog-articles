@@ -4,21 +4,24 @@
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Clean Architecture flips the dependency of traditional layered architecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
-        "link": "/06-08-2024-Clean-Architecture"
+        "link": "/06-08-2024-Clean-Architecture",
+        "isLastItem": false
     },
     {
         "id": 12,
         "title": "Implementing Custom Promises",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
-        "link": "/06-08-2024-Implementing-Custom-Promises"
+        "link": "/06-08-2024-Implementing-Custom-Promises",
+        "isLastItem": false
     },
     {
         "id": 13,
         "title": "Classless Inter-Domain Routing",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
-        "link": "/06-08-2024-Classless-Inter-Domain-Routing"
+        "link": "/06-08-2024-Classless-Inter-Domain-Routing",
+        "isLastItem": false
     },
 
 
@@ -27,21 +30,24 @@
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Clean Architecture flips the dependency of traditional layered architecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
-        "link": "/06-08-2024-Clean-Architecture"
+        "link": "/06-08-2024-Clean-Architecture",
+        "isLastItem": false
     },
     {
         "id": 15,
         "title": "Implementing Custom Promises",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
-        "link": "/06-08-2024-Implementing-Custom-Promises"
+        "link": "/06-08-2024-Implementing-Custom-Promises",
+        "isLastItem": false
     },
     {
         "id": 16,
         "title": "Classless Inter-Domain Routing",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
-        "link": "/06-08-2024-Classless-Inter-Domain-Routing"
+        "link": "/06-08-2024-Classless-Inter-Domain-Routing",
+        "isLastItem": false
     },
 
     {
@@ -49,27 +55,31 @@
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Clean Architecture flips the dependency of traditional layered architecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
-        "link": "/06-08-2024-Clean-Architecture"
+        "link": "/06-08-2024-Clean-Architecture",
+        "isLastItem": false
     },
     {
         "id": 18,
         "title": "Implementing Custom Promises",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
-        "link": "/06-08-2024-Implementing-Custom-Promises"
+        "link": "/06-08-2024-Implementing-Custom-Promises",
+        "isLastItem": false
     },
     {
         "id": 19,
         "title": "Classless Inter-Domain Routing",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
-        "link": "/06-08-2024-Classless-Inter-Domain-Routing"
+        "link": "/06-08-2024-Classless-Inter-Domain-Routing",
+        "isLastItem": false
     },
     {
         "id": 20,
         "title": "Classless Inter-Domain Routing",
         "subtitle": "He Quanjie Boey - 6/8/2024",
         "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
-        "link": "/06-08-2024-Classless-Inter-Domain-Routing"
+        "link": "/06-08-2024-Classless-Inter-Domain-Routing",
+        "isLastItem": false
     }
 ]
