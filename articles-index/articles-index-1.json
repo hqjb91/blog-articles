@@ -3,6 +3,7 @@
         "id": 1,
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 8/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723605089/OnionArchDiagram_zchqdz.png",
         "content": "Clean Architecture flips the dependency of traditional layered architecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
         "link": "/08-08-2024-Clean-Architecture",
         "isLastItem": false
