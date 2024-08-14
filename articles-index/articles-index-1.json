@@ -52,6 +52,7 @@
         "id": 7,
         "title": "Git Branching Strategy",
         "subtitle": "He Quanjie Boey - 7/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723634748/79138454-f58d-45df-a30d-9afd3cfe1254.png",
         "content": "An explanation of the commonly used Git Branching strategy. Trunk based and Git flow branching strategies are two popular git branching strategies employed.",
         "link": "/07-08-2024-Git-Branching-Strategies",
         "isLastItem": false
