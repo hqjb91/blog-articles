@@ -6,6 +6,8 @@ A standard way to architecture application is the layered architecture. Where we
 
 Clean Architecture flips the dependency via dependency injection/inversion such that the outer layers (e.g. API/Infrastructure) depends on abstractions defined by inner core layers (e.g. Application/Domain). This makes it easy if we were to change infrastructure as it will not have as much of an impact on the core business layers
 
+![OnionArchitectureDiagram](https://res.cloudinary.com/dldvhlymt/image/upload/v1723605089/OnionArchDiagram_zchqdz.png)
+
 Creating the folders for a sample clean architecture .Net Core project :
 
 ```shell
