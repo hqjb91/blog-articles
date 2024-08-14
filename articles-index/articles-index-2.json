@@ -1,6 +1,14 @@
 [
     {
         "id": 11,
+        "title": "Spring Security OAuth 2.0",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "Notes on how to implement OAuth 2.0 using the Spring Framework in Java.",
+        "link": "/07-08-2024-Spring-Security-OAuth",
+        "isLastItem": false
+    },
+    {
+        "id": 12,
         "title": "Top 3 OWASP",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "Notes on the common security vulnerabilities in web applications - SQL Injection, XSS and CRSF attacks.",

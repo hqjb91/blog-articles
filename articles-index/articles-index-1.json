@@ -1,6 +1,14 @@
 [
     {
         "id": 1,
+        "title": "CSS Refresher",
+        "subtitle": "He Quanjie Boey - 14/8/2024",
+        "content": "Essentials of CSS with a simple breakdown of the Box Model and related layout concepts. Basic summary of the fundamentals like margins, padding, positioning, and flow layouts.",
+        "link": "/14-08-2024-CSS-Refresher",
+        "isLastItem": false
+    },
+    {
+        "id": 2,
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723605089/OnionArchDiagram_zchqdz.png",
@@ -9,7 +17,7 @@
         "isLastItem": false
     },
     {
-        "id": 2,
+        "id": 3,
         "title": "Implementing Custom Promises",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
@@ -17,7 +25,7 @@
         "isLastItem": false
     },
     {
-        "id": 3,
+        "id": 4,
         "title": "Classless Inter-Domain Routing",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
@@ -25,7 +33,7 @@
         "isLastItem": false
     },
     {
-        "id": 4,
+        "id": 5,
         "title": "Angular Basics",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723635839/aaa094da-9d33-4818-8784-12e18b2beae7.png",
@@ -34,7 +42,7 @@
         "isLastItem": false
     },
     {
-        "id": 5,
+        "id": 6,
         "title": "Currying in Javascript",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "A summarized notes on how to implement the currying technique in Javascript.",
@@ -42,7 +50,7 @@
         "isLastItem": false
     },
     {
-        "id": 6,
+        "id": 7,
         "title": "Debounce and Throttling in Javascript",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "A summarized notes on how to implement the debounce and throttling technique in Javascript. Debouncing and Throttling are used from rate limiting functions.",
@@ -50,7 +58,7 @@
         "isLastItem": false
     },
     {
-        "id": 7,
+        "id": 8,
         "title": "Git Branching Strategy",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723634748/79138454-f58d-45df-a30d-9afd3cfe1254.png",
@@ -59,7 +67,7 @@
         "isLastItem": false
     },
     {
-        "id": 8,
+        "id": 9,
         "title": "NextJs Summary",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "A very rudimentary summary of the basics of NextJs.",
@@ -67,19 +75,11 @@
         "isLastItem": false
     },
     {
-        "id": 9,
+        "id": 10,
         "title": "Sorting Algorithms in Javascript",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "A brief summary of the relatively efficient sorting algorithms in Javascript. Merge and Quick sort basic implementations are shown in Javascript.",
         "link": "/07-08-2024-Sorting-Algorithms-Javascript",
-        "isLastItem": false
-    },
-    {
-        "id": 10,
-        "title": "Spring Security OAuth 2.0",
-        "subtitle": "He Quanjie Boey - 7/8/2024",
-        "content": "Notes on how to implement OAuth 2.0 using the Spring Framework in Java.",
-        "link": "/07-08-2024-Spring-Security-OAuth",
         "isLastItem": false
     }
 ]
