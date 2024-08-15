@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "Spring-Security-Basics",
+        "title": "Spring Security Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Spring Security is a convention over configuration framework and the default configuration for a simple project is the HTTP Basic access authentication where the client is only required to send a username and password through the HTTP Authorization header, with the prefix Basic and Base64 encoded string of username and password.",
         "link": "/15-08-2024-Spring-Security-Basics",
@@ -17,7 +17,7 @@
     },
     {
         "id": 3,
-        "title": "15-08-2024-Angular-Universal",
+        "title": "Angular Universal",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Normally angular apps are packaged and then rendered by browser on client side. This results in poor SEO(Search engine optimization) results. Angular Universal helps resolve that by pre-rendering the application on the server-side and sent to the user directly as a static HTML file.",
         "link": "/15-08-2024-Angular-Universal",
