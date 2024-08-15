@@ -11,6 +11,7 @@
         "id": 2,
         "title": "Java Functional Programming Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735820/78a47b2b-8e16-4f92-9347-138fa6db662f.png",
         "content": "Java is notably an object-oriented programming language. However, with the current trend towards functional programming, Java 8 introduces Lambda Expressions, Functional Interfaces and Method References in order to make Java compatible with the simplicity of Functional Programming.",
         "link": "/15-08-2024-Java-Functional-Programming-Basics",
         "isLastItem": false
@@ -27,6 +28,7 @@
         "id": 4,
         "title": "CSS Refresher",
         "subtitle": "He Quanjie Boey - 14/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735649/fa27ee9b-08af-48ad-bd88-73d13a321add.png",
         "content": "Essentials of CSS with a simple breakdown of the Box Model and related layout concepts. Basic summary of the fundamentals like margins, padding, positioning, and flow layouts.",
         "link": "/14-08-2024-CSS-Refresher",
         "isLastItem": false
