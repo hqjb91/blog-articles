@@ -1,6 +1,31 @@
 [
     {
         "id": 11,
+        "title": "Git Branching Strategy",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723634748/79138454-f58d-45df-a30d-9afd3cfe1254.png",
+        "content": "An explanation of the commonly used Git Branching strategy. Trunk based and Git flow branching strategies are two popular git branching strategies employed.",
+        "link": "/07-08-2024-Git-Branching-Strategies",
+        "isLastItem": false
+    },
+    {
+        "id": 12,
+        "title": "NextJs Summary",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A very rudimentary summary of the basics of NextJs.",
+        "link": "/07-08-2024-NextJs-Summary",
+        "isLastItem": false
+    },
+    {
+        "id": 13,
+        "title": "Sorting Algorithms in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A brief summary of the relatively efficient sorting algorithms in Javascript. Merge and Quick sort basic implementations are shown in Javascript.",
+        "link": "/07-08-2024-Sorting-Algorithms-Javascript",
+        "isLastItem": false
+    },
+    {
+        "id": 14,
         "title": "Spring Security OAuth 2.0",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "Notes on how to implement OAuth 2.0 using the Spring Framework in Java.",
@@ -8,7 +33,7 @@
         "isLastItem": false
     },
     {
-        "id": 12,
+        "id": 15,
         "title": "Top 3 OWASP",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "Notes on the common security vulnerabilities in web applications - SQL Injection, XSS and CRSF attacks.",
