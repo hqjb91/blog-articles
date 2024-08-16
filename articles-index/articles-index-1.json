@@ -1,6 +1,14 @@
 [
     {
         "id": 1,
+        "title": "Singleton Design Pattern - C#",
+        "subtitle": "He Quanjie Boey - 16/8/2024",
+        "content": "At its very core, a Singleton is an object that can only be instantiated once in an entire application and every user can only access that one unique instance. The article explores the implementation of a Singleton design pattern in C#. The Singleton pattern is extensively used in .Net Core notably with the Entity Framework Core DB Context and as a scope for dependency injection.",
+        "link": "/16-08-2024-Singleton-Design-Pattern",
+        "isLastItem": false
+    },
+    {
+        "id": 2,
         "title": "Spring Security Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Spring Security is a convention over configuration framework and the default configuration for a simple project is the HTTP Basic access authentication where the client is only required to send a username and password through the HTTP Authorization header, with the prefix Basic and Base64 encoded string of username and password.",
@@ -8,7 +16,7 @@
         "isLastItem": false
     },
     {
-        "id": 2,
+        "id": 3,
         "title": "Java Functional Programming Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735820/78a47b2b-8e16-4f92-9347-138fa6db662f.png",
@@ -17,7 +25,7 @@
         "isLastItem": false
     },
     {
-        "id": 3,
+        "id": 4,
         "title": "Angular Universal",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Normally angular apps are packaged and then rendered by browser on client side. This results in poor SEO(Search engine optimization) results. Angular Universal helps resolve that by pre-rendering the application on the server-side and sent to the user directly as a static HTML file.",
@@ -25,7 +33,7 @@
         "isLastItem": false
     },
     {
-        "id": 4,
+        "id": 5,
         "title": "CSS Refresher",
         "subtitle": "He Quanjie Boey - 14/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735649/fa27ee9b-08af-48ad-bd88-73d13a321add.png",
@@ -34,7 +42,7 @@
         "isLastItem": false
     },
     {
-        "id": 5,
+        "id": 6,
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723605089/OnionArchDiagram_zchqdz.png",
@@ -43,7 +51,7 @@
         "isLastItem": false
     },
     {
-        "id": 6,
+        "id": 7,
         "title": "Implementing Custom Promises",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
@@ -51,7 +59,7 @@
         "isLastItem": false
     },
     {
-        "id": 7,
+        "id": 8,
         "title": "Classless Inter-Domain Routing",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
@@ -59,7 +67,7 @@
         "isLastItem": false
     },
     {
-        "id": 8,
+        "id": 9,
         "title": "Angular Basics",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723635839/aaa094da-9d33-4818-8784-12e18b2beae7.png",
@@ -68,19 +76,11 @@
         "isLastItem": false
     },
     {
-        "id": 9,
+        "id": 10,
         "title": "Currying in Javascript",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "A summarized notes on how to implement the currying technique in Javascript.",
         "link": "/07-08-2024-Currying-Javascript",
-        "isLastItem": false
-    },
-    {
-        "id": 10,
-        "title": "Debounce and Throttling in Javascript",
-        "subtitle": "He Quanjie Boey - 7/8/2024",
-        "content": "A summarized notes on how to implement the debounce and throttling technique in Javascript. Debouncing and Throttling are used from rate limiting functions.",
-        "link": "/07-08-2024-Debounce-Throttle-Javascript",
         "isLastItem": false
     }
 ]

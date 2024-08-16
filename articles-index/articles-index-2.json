@@ -1,6 +1,14 @@
 [
     {
         "id": 11,
+        "title": "Debounce and Throttling in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A summarized notes on how to implement the debounce and throttling technique in Javascript. Debouncing and Throttling are used from rate limiting functions.",
+        "link": "/07-08-2024-Debounce-Throttle-Javascript",
+        "isLastItem": false
+    },
+    {
+        "id": 12,
         "title": "Git Branching Strategy",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723634748/79138454-f58d-45df-a30d-9afd3cfe1254.png",
@@ -9,7 +17,7 @@
         "isLastItem": false
     },
     {
-        "id": 12,
+        "id": 13,
         "title": "NextJs Summary",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "A very rudimentary summary of the basics of NextJs.",
@@ -17,7 +25,7 @@
         "isLastItem": false
     },
     {
-        "id": 13,
+        "id": 14,
         "title": "Sorting Algorithms in Javascript",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "A brief summary of the relatively efficient sorting algorithms in Javascript. Merge and Quick sort basic implementations are shown in Javascript.",
@@ -25,7 +33,7 @@
         "isLastItem": false
     },
     {
-        "id": 14,
+        "id": 15,
         "title": "Spring Security OAuth 2.0",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "Notes on how to implement OAuth 2.0 using the Spring Framework in Java.",
@@ -33,7 +41,7 @@
         "isLastItem": false
     },
     {
-        "id": 15,
+        "id": 16,
         "title": "Top 3 OWASP",
         "subtitle": "He Quanjie Boey - 7/8/2024",
         "content": "Notes on the common security vulnerabilities in web applications - SQL Injection, XSS and CRSF attacks.",
