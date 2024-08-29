@@ -1,6 +1,22 @@
 [
     {
         "id": 1,
+        "title": "Real Analysis - Introduction",
+        "subtitle": "He Quanjie Boey - 29/8/2024",
+        "content": "Real analysis is a branch of mathematics that deals with the rigorous study of real numbers, sequences, series, and functions. It forms the foundation for many advanced mathematical concepts and is essential for understanding calculus at a deeper level. This introductory blog post explores the core topics of real analysis, including limits, continuity, differentiation, and integration, with a focus on the precision and formalism that distinguish real analysis from elementary calculus.",
+        "link": "/29-08-2024-Real-Analysis-Introduction",
+        "isLastItem": false
+    },
+    {
+        "id": 2,
+        "title": "Builder Design Pattern - C#",
+        "subtitle": "He Quanjie Boey - 29/8/2024",
+        "content": "The Fluent Builder pattern is a powerful technique for creating complex objects in a clean and readable way. By using a builder class, you can encapsulate the construction logic, provide a fluent API, and enhance the maintainability of your code.",
+        "link": "/29-08-2024-Builder-Design-Pattern",
+        "isLastItem": false
+    },
+    {
+        "id": 3,
         "title": "Factory Design Pattern - C#",
         "subtitle": "He Quanjie Boey - 29/8/2024",
         "content": "The Factory Design Pattern is a Creational design pattern to decouple the code that creates the objects from the object itself.",
@@ -8,7 +24,7 @@
         "isLastItem": false
     },
     {
-        "id": 2,
+        "id": 4,
         "title": "Singleton Design Pattern - C#",
         "subtitle": "He Quanjie Boey - 16/8/2024",
         "content": "At its very core, a Singleton is an object that can only be instantiated once in an entire application and every user can only access that one unique instance. The article explores the implementation of a Singleton design pattern in C#. The Singleton pattern is extensively used in .Net Core notably with the Entity Framework Core DB Context and as a scope for dependency injection.",
@@ -16,7 +32,7 @@
         "isLastItem": false
     },
     {
-        "id": 3,
+        "id": 5,
         "title": "Spring Security Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Spring Security is a convention over configuration framework and the default configuration for a simple project is the HTTP Basic access authentication where the client is only required to send a username and password through the HTTP Authorization header, with the prefix Basic and Base64 encoded string of username and password.",
@@ -24,7 +40,7 @@
         "isLastItem": false
     },
     {
-        "id": 4,
+        "id": 6,
         "title": "Java Functional Programming Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735820/78a47b2b-8e16-4f92-9347-138fa6db662f.png",
@@ -33,7 +49,7 @@
         "isLastItem": false
     },
     {
-        "id": 5,
+        "id": 7,
         "title": "Angular Universal",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Normally angular apps are packaged and then rendered by browser on client side. This results in poor SEO(Search engine optimization) results. Angular Universal helps resolve that by pre-rendering the application on the server-side and sent to the user directly as a static HTML file.",
@@ -41,7 +57,7 @@
         "isLastItem": false
     },
     {
-        "id": 6,
+        "id": 8,
         "title": "CSS Refresher",
         "subtitle": "He Quanjie Boey - 14/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735649/fa27ee9b-08af-48ad-bd88-73d13a321add.png",
@@ -50,7 +66,7 @@
         "isLastItem": false
     },
     {
-        "id": 7,
+        "id": 9,
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723605089/OnionArchDiagram_zchqdz.png",
@@ -59,28 +75,11 @@
         "isLastItem": false
     },
     {
-        "id": 8,
+        "id": 10,
         "title": "Implementing Custom Promises",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
         "link": "/08-08-2024-Implementing-Custom-Promises",
-        "isLastItem": false
-    },
-    {
-        "id": 9,
-        "title": "Classless Inter-Domain Routing",
-        "subtitle": "He Quanjie Boey - 8/8/2024",
-        "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
-        "link": "/08-08-2024-Classless-Inter-Domain-Routing",
-        "isLastItem": false
-    },
-    {
-        "id": 10,
-        "title": "Angular Basics",
-        "subtitle": "He Quanjie Boey - 7/8/2024",
-        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723635839/aaa094da-9d33-4818-8784-12e18b2beae7.png",
-        "content": "A summarized notes on the basics of Angular.",
-        "link": "/07-08-2024-Angular-Basics",
         "isLastItem": false
     }
 ]
