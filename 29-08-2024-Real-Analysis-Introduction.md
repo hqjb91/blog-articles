@@ -12,10 +12,7 @@ Axioms of the reals: A non-empty set $\mathbb{R}$ together with operations +, $\
 2. $\quad (\mathbb{R} \setminus \{0\}, \cdot, 1) \quad \text{is an abelian group} \quad (1 \neq 0)$
 3. $\quad \text{distributive law} \quad x \cdot (y + z) = x \cdot y + x \cdot z$
 4. $\quad \leq \text{ is a total order, compatible with } + \text{ and } \cdot, \text{ Archimedean property}$
-5. $$\quad \text{Every Cauchy sequence is a convergent sequence.} \quad |x| := \begin{cases} 
-      x & \text{if } x \geq 0 \\
-      -x & \text{if } x < 0 
-    \end{cases}$$
+5. Every Cauchy sequence is a convergent sequence. $\quad |x| := \begin{cases} x & \text{if } x \geq 0 \\ -x & \text{if } x < 0 \end{cases}$
 
 The sequence $a_n$ convergences to a if for ALL given positive epsilon neighborhood around a, there exists and we can find a natural number N such that beyond this natural number N all the $a_{n>N}$ will lie within the epsilon neighborhood :
 
@@ -70,3 +67,5 @@ $|(-1) - a| < \varepsilon$
 
 $2 = |1 - (-1)| = |1-a+a-(-1)| \leq |1-a| + |a-(-1)| = |1-a| + |(-1)-a| < 2$
 which is a contradiction
+
+Definition of a bounded sequence :
