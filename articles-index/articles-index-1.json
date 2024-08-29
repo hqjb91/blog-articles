@@ -1,10 +1,10 @@
 [
     {
         "id": 1,
-        "title": "Real Analysis - Introduction",
+        "title": "EF Core - One to Many Relationship",
         "subtitle": "He Quanjie Boey - 29/8/2024",
-        "content": "Real analysis is a branch of mathematics that deals with the rigorous study of real numbers, sequences, series, and functions. It forms the foundation for many advanced mathematical concepts and is essential for understanding calculus at a deeper level. This introductory blog post explores the core topics of real analysis, including limits, continuity, differentiation, and integration, with a focus on the precision and formalism that distinguish real analysis from elementary calculus.",
-        "link": "/29-08-2024-Real-Analysis-Introduction",
+        "content": "This blog post is a summary of the microsoft guide to implementing a one-to-many relationship in Entity Framework Core (EF Core), a popular Object-Relational Mapping (ORM) framework for .NET applications.",
+        "link": "/29-08-2024-EF-Core-One-To-Many",
         "isLastItem": false
     },
     {
