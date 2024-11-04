@@ -1,0 +1,140 @@
+[
+    {
+        "id": 1,
+        "title": "Top 3 OWASP",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "Notes on the common security vulnerabilities in web applications - SQL Injection, XSS and CRSF attacks.",
+        "link": "/07-08-2024-Top-3-OWASP"
+    },
+    {
+        "id": 2,
+        "title": "Spring Security OAuth 2.0",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "Notes on how to implement OAuth 2.0 using the Spring Framework in Java.",
+        "link": "/07-08-2024-Spring-Security-OAuth"
+    },
+    {
+        "id": 3,
+        "title": "Sorting Algorithms in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A brief summary of the relatively efficient sorting algorithms in Javascript. Merge and Quick sort basic implementations are shown in Javascript.",
+        "link": "/07-08-2024-Sorting-Algorithms-Javascript"
+    },
+    {
+        "id": 4,
+        "title": "NextJs Summary",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A very rudimentary summary of the basics of NextJs.",
+        "link": "/07-08-2024-NextJs-Summary"
+    },
+    {
+        "id": 5,
+        "title": "Git Branching Strategy",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723634748/79138454-f58d-45df-a30d-9afd3cfe1254.png",
+        "content": "An explanation of the commonly used Git Branching strategy. Trunk based and Git flow branching strategies are two popular git branching strategies employed.",
+        "link": "/07-08-2024-Git-Branching-Strategies"
+    },
+    {
+        "id": 6,
+        "title": "Debounce and Throttling in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A summarized notes on how to implement the debounce and throttling technique in Javascript. Debouncing and Throttling are used from rate limiting functions.",
+        "link": "/07-08-2024-Debounce-Throttle-Javascript"
+    },
+    {
+        "id": 7,
+        "title": "Currying in Javascript",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "content": "A summarized notes on how to implement the currying technique in Javascript.",
+        "link": "/07-08-2024-Currying-Javascript"
+    },
+    {
+        "id": 8,
+        "title": "Angular Basics",
+        "subtitle": "He Quanjie Boey - 7/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723635839/aaa094da-9d33-4818-8784-12e18b2beae7.png",
+        "content": "A summarized notes on the basics of Angular.",
+        "link": "/07-08-2024-Angular-Basics"
+    },
+    {
+        "id": 9,
+        "title": "Classless Inter-Domain Routing",
+        "subtitle": "He Quanjie Boey - 8/8/2024",
+        "content": "Classless Inter-Domain Routing (CIDR) is a way to allocate IP address. A summary on how the CIDR notation works.",
+        "link": "/08-08-2024-Classless-Inter-Domain-Routing"
+    },
+    {
+        "id": 10,
+        "title": "Implementing Custom Promises",
+        "subtitle": "He Quanjie Boey - 8/8/2024",
+        "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
+        "link": "/08-08-2024-Implementing-Custom-Promises"
+    },
+    {
+        "id": 11,
+        "title": "Clean Architecture",
+        "subtitle": "He Quanjie Boey - 8/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723605089/OnionArchDiagram_zchqdz.png",
+        "content": "Clean Architecture flips the dependency of traditional layered architecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
+        "link": "/08-08-2024-Clean-Architecture"
+    },
+    {
+        "id": 12,
+        "title": "CSS Refresher",
+        "subtitle": "He Quanjie Boey - 14/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735649/fa27ee9b-08af-48ad-bd88-73d13a321add.png",
+        "content": "Essentials of CSS with a simple breakdown of the Box Model and related layout concepts. Basic summary of the fundamentals like margins, padding, positioning, and flow layouts.",
+        "link": "/14-08-2024-CSS-Refresher"
+    },
+    {
+        "id": 13,
+        "title": "Angular Universal",
+        "subtitle": "He Quanjie Boey - 15/8/2024",
+        "content": "Normally angular apps are packaged and then rendered by browser on client side. This results in poor SEO(Search engine optimization) results. Angular Universal helps resolve that by pre-rendering the application on the server-side and sent to the user directly as a static HTML file.",
+        "link": "/15-08-2024-Angular-Universal"
+    },
+    {
+        "id": 14,
+        "title": "Java Functional Programming Basics",
+        "subtitle": "He Quanjie Boey - 15/8/2024",
+        "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735820/78a47b2b-8e16-4f92-9347-138fa6db662f.png",
+        "content": "Java is notably an object-oriented programming language. However, with the current trend towards functional programming, Java 8 introduces Lambda Expressions, Functional Interfaces and Method References in order to make Java compatible with the simplicity of Functional Programming.",
+        "link": "/15-08-2024-Java-Functional-Programming-Basics"
+    },
+    {
+        "id": 15,
+        "title": "Spring Security Basics",
+        "subtitle": "He Quanjie Boey - 15/8/2024",
+        "content": "Spring Security is a convention over configuration framework and the default configuration for a simple project is the HTTP Basic access authentication where the client is only required to send a username and password through the HTTP Authorization header, with the prefix Basic and Base64 encoded string of username and password.",
+        "link": "/15-08-2024-Spring-Security-Basics"
+    },
+    {
+        "id": 16,
+        "title": "Singleton Design Pattern - C#",
+        "subtitle": "He Quanjie Boey - 16/8/2024",
+        "content": "At its very core, a Singleton is an object that can only be instantiated once in an entire application and every user can only access that one unique instance. The article explores the implementation of a Singleton design pattern in C#. The Singleton pattern is extensively used in .Net Core notably with the Entity Framework Core DB Context and as a scope for dependency injection.",
+        "link": "/16-08-2024-Singleton-Design-Pattern"
+    },
+    {
+        "id": 17,
+        "title": "Factory Design Pattern - C#",
+        "subtitle": "He Quanjie Boey - 29/8/2024",
+        "content": "The Factory Design Pattern is a Creational design pattern to decouple the code that creates the objects from the object itself.",
+        "link": "/29-08-2024-Factory-Design-Pattern"
+    },
+    {
+        "id": 18,
+        "title": "Builder Design Pattern - C#",
+        "subtitle": "He Quanjie Boey - 29/8/2024",
+        "content": "The Fluent Builder pattern is a powerful technique for creating complex objects in a clean and readable way. By using a builder class, you can encapsulate the construction logic, provide a fluent API, and enhance the maintainability of your code.",
+        "link": "/29-08-2024-Builder-Design-Pattern"
+    },
+    {
+        "id": 19,
+        "title": "EF Core - One to Many Relationship",
+        "subtitle": "He Quanjie Boey - 29/8/2024",
+        "content": "This blog post is a summary of the microsoft guide to implementing a one-to-many relationship in Entity Framework Core (EF Core), a popular Object Relational Mapper (ORM) framework for .Net applications.",
+        "link": "/29-08-2024-EFCore-One-to-Many-Relationship"
+    }
+]
