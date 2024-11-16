@@ -1,6 +1,6 @@
-# Next.js Prerendering and Data Fetching Guide
+# Next.js Primer
 
-Learn about the various data-fetching strategies in Next.js, along with a brief overview of React Suspense for handling asynchronous data.
+Basic Notes on NextJS.
 
 ---
 
@@ -18,11 +18,11 @@ Next.js supports two main forms of prerendering:
 
 ### Data Fetching Approaches
 
-#### 1. Client-Side Fetching
+#### Client-Side Fetching
 Data is fetched dynamically using JavaScript in the browser.  
 Example: Asynchronous HTTP calls executed after the page has been rendered.
 
-#### 2. Server-Side Fetching
+#### Server-Side Fetching
 Data is fetched on the server to render the page before sending it to the client.
 
 - **Pre-Next.js 9.3**
@@ -48,14 +48,14 @@ Data is fetched on the server to render the page before sending it to the client
 
 ### Rendering Strategies in Next.js
 
-#### 1. **Static Generation (SSG)**
+#### Static Generation (SSG)
 - **Default Mode**: HTML is pre-rendered at build time.
 - Example: Applications hosted on platforms like IIS without `getStaticProps` or `getServerSideProps` rely on client-side data fetching instead.
 
-#### 2. **Server-Side Rendering (SSR)**
+#### Server-Side Rendering (SSR)
 - HTML is generated on each request using server-side data fetching methods like `getServerSideProps`.
 
-#### 3. **Incremental Static Regeneration (ISR)**
+#### Incremental Static Regeneration (ISR)
 - Pages are generated as requested and then cached for reuse.
 
 ---

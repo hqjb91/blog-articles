@@ -1,25 +1,25 @@
 # Sorting Algorithm Comparison and Implementation in Javascript
 
-## **Quick Sort**
+## Quick Sort
 
-### **Time Complexity**
-- **Average case**: \(O(n\log n)\)
+### Time Complexity
+- **Average case**: nlogn
   - Uses the divide-and-conquer strategy. Example with 8 elements:
     - Step 1: Split into 4 batches of 2 elements.
     - Step 2: Merge into 2 batches of 4 elements.
     - Step 3: Final merge into 1 batch of 8 elements.
-    - Total steps = \( \log_2(8) = 3 \).
-- **Worst case**: \(O(n^2)\) (occurs when the pivot selection is poor, e.g., sorted input with a bad pivot choice).
+    - Total steps = log2(8) = 3.
+- **Worst case**: O(n^2) (occurs when the pivot selection is poor, e.g., sorted input with a bad pivot choice).
 
-### **Advantages**
+### Advantages
 - Faster than merge sort on average, with less overhead.
 - Performs in-place sorting, requiring less memory compared to merge sort.
 
-### **Disadvantages**
+### Disadvantages
 - Not stable: Elements with the same value might not retain their relative order.
-- Worst-case performance can degrade to \(O(n^2)\) with poor pivot choices.
+- Worst-case performance can degrade to O(n^2) with poor pivot choices.
 
-### **Implementation in JavaScript**
+### Implementation in JavaScript
 ```javascript
 const testInput = [1, 9, 8, 3, 6, 5, 7, 7];
 
@@ -39,21 +39,21 @@ console.log(sortedArray); // Output: [1, 3, 5, 6, 7, 7, 8, 9]
 
 ---
 
-## **Merge Sort**
+## Merge Sort
 
-### **Time Complexity**
+### Time Complexity
 - **Best, Worst, and Average case**: \(O(n\log n)\).
 - Uses divide-and-conquer but requires additional memory for temporary arrays.
 
-### **Advantages**
+### Advantages
 - Stable: Retains the relative order of elements with equal values.
 - Consistent \(O(n\log n)\) performance, even for worst-case inputs.
 
-### **Disadvantages**
+### Disadvantages
 - Slower than quick sort in practice due to additional memory usage.
 - Requires extra space for temporary arrays, which makes it less efficient for large datasets.
 
-### **Implementation in JavaScript**
+### Implementation in JavaScript
 ```javascript
 const testInput = [1, 9, 8, 3, 6, 5, 7, 7];
 
@@ -83,17 +83,3 @@ const merge = (left, right) => {
 const sortedArray = mergeSort(testInput);
 console.log(sortedArray); // Output: [1, 3, 5, 6, 7, 7, 8, 9]
 ```
-
----
-
-## **Comparison**
-
-| Feature                | Quick Sort               | Merge Sort                 |
-|------------------------|--------------------------|----------------------------|
-| **Time Complexity**    | \(O(n\log n)\) (avg), \(O(n^2)\) (worst) | \(O(n\log n)\) (all cases) |
-| **Space Complexity**   | \(O(\log n)\) (in-place) | \(O(n)\) (extra memory)    |
-| **Stability**          | Not stable              | Stable                     |
-| **Performance**        | Faster in practice      | Slower due to overhead     |
-| **Best Use Case**      | Large datasets, average-case efficiency | Small datasets or when stability is needed |
-
-Both algorithms are efficient and widely used, but their application depends on the specific requirements of your problem.

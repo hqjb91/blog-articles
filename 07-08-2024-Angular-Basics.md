@@ -1,6 +1,6 @@
 # Angular Development Guide
 
-A comprehensive guide to setting up and working with Angular, covering installation, workflows, project structure, modules, components, bindings, directives, and lifecycle hooks.
+Notes on setting up and working with Angular.
 
 ---
 

@@ -4,7 +4,7 @@ One-to-many relationships in EF Core are fundamental to modeling relationships b
 
 ---
 
-## **Required One-To-Many Relationship**
+## Required One-To-Many Relationship
 
 ### Example Entities:
 ```csharp
@@ -50,7 +50,7 @@ If naming conventions and navigation properties match EF Core's expectations, th
 #### Explicit Configuration:
 If conventions are not met or customization is needed, you can configure the relationship explicitly.
 
-**Starting from the Parent:**
+Starting from the Parent:
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
@@ -62,7 +62,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-**Starting from the Child:**
+Starting from the Child:
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
@@ -76,7 +76,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ---
 
-## **Optional One-To-Many Relationship**
+## Optional One-To-Many Relationship
 
 ### Key Differences:
 - In an **optional relationship**, the **foreign key (`EAVAttribute.EAVEntityId`) is nullable**.
@@ -87,7 +87,7 @@ For optional relationships, the **`.IsRequired(false)`** method is used.
 
 **Explicit Configuration for Optional Relationships:**
 
-**Starting from the Parent:**
+Starting from the Parent:
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
@@ -99,7 +99,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-**Starting from the Child:**
+Starting from the Child:
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
@@ -110,14 +110,3 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         .IsRequired(false); // Optional relationship
 }
 ```
-
----
-
-## Summary of Differences
-
-| Feature                            | Required Relationship       | Optional Relationship       |
-|------------------------------------|-----------------------------|-----------------------------|
-| **Foreign Key Nullability**        | Non-nullable                | Nullable                   |
-| **Child Without Parent**           | Not Allowed                 | Allowed                    |
-| **Parent Without Children**        | Allowed                     | Allowed                    |
-| **Explicit Configuration**         | `.IsRequired()`             | `.IsRequired(false)`       |

@@ -170,14 +170,3 @@ public class Singleton {
 
 ### Drawbacks
 - Slightly more complex than simpler implementations.
-
----
-
-## Summary of Implementations
-
-| Implementation Type       | Thread-Safe | Performance | Complexity |
-|---------------------------|-------------|-------------|------------|
-| Eager Singleton           | ✅           | High        | Simple     |
-| Lazy Singleton            | ❌           | Medium      | Simple     |
-| Lock-Based Singleton      | ✅           | Low         | Medium     |
-| Double-Checked Singleton  | ✅           | High        | Advanced   |

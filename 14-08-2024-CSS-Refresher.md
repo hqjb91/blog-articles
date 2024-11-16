@@ -1,10 +1,10 @@
-# CSS Fundamentals: Box Model, Flow Layout, Display, and Position
+# CSS Refresher
 
 This article explores key CSS concepts, including the Box Model, margin collapse behavior, flow layout, display properties, and positioning.
 
 ---
 
-## 1. Box Model
+## Box Model
 
 The Box Model is one of the most fundamental concepts in CSS. It represents a box that wraps around all HTML elements and consists of the following parts:
 
@@ -17,7 +17,7 @@ The Box Model is one of the most fundamental concepts in CSS. It represents a bo
 
 ---
 
-## 2. Margin Collapse
+## Margin Collapse
 
 *Adapted from Josh Comeau's CSS course.*
 
@@ -35,7 +35,7 @@ Margin collapse is a behavior in which vertical margins of adjacent elements com
 
 ---
 
-## 3. Flow Layout
+## Flow Layout
 
 Flow layout describes the default way in which HTML elements are displayed on a page. 
 
@@ -47,7 +47,7 @@ The following are not considered in the normal flow layout:
 
 ---
 
-## 4. Display
+## Display
 
 The CSS `display` property defines the type of rendering box created for an HTML element.
 
@@ -71,7 +71,7 @@ The CSS `display` property defines the type of rendering box created for an HTML
 
 ---
 
-## 5. Position
+## Position
 
 The CSS `position` property defines how elements are positioned on the page or relative to other elements.
 

@@ -59,12 +59,12 @@ To deploy the application to production, follow these steps:
 
 ## Common Issues and Solutions
 
-### 1. **Accessing the `Window` Object**
+### Accessing the `Window` Object
    Since server-side rendering does not have access to the browser's `window` object, you may encounter issues. To address this, avoid direct use of the `window` object. Instead, use Angular’s dependency injection or conditional logic to ensure compatibility.
 
 ---
 
-### 2. **Relative Path URLs**
+### Relative Path URLs
    Relative paths might fail during server-side rendering. To resolve this, use an `HttpInterceptor` to convert relative paths to absolute URLs. 
 
    Example:
@@ -84,7 +84,7 @@ To deploy the application to production, follow these steps:
 
 ---
 
-### 3. **DOM Manipulation**
+### DOM Manipulation
    When interacting with the DOM, always use Angular's `Renderer2`. For example:
 
    **Before** (Direct DOM manipulation):
@@ -113,7 +113,7 @@ To deploy the application to production, follow these steps:
 
 ---
 
-### 4. **Local Storage**
+### Local Storage
    Server-side rendering does not support `localStorage` or `sessionStorage`. To handle this, add the following polyfills to `server.ts`:
 
    ```typescript

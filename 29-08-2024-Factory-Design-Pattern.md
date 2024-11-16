@@ -6,13 +6,13 @@ The Factory family of patterns is central to designing modular, scalable, and lo
 
 ---
 
-## **1. Factory Design Pattern**
+## Factory Design Pattern
 
-### **Concept**:
+### Concept:
 - The Factory Pattern decouples object creation from the client. 
 - Instead of creating objects directly using constructors, the client uses a factory method.
 
-### **Problem without Factory**:
+### Problem without Factory:
 Direct instantiation ties the client to concrete classes, violating the **Open-Closed Principle** (OCP). Adding new object types requires modifying existing client code.
 
 #### Example Without Factory:
@@ -45,18 +45,18 @@ public class CakeFactory
 
 ---
 
-## **2. Factory Method Pattern**
+## Factory Method Pattern
 
-### **Concept**:
+### Concept:
 - A **creational design pattern** that provides an interface for creating objects but lets subclasses alter the type of objects that will be created.
 - Solves the **Open-Closed Principle** issue of the Factory Pattern.
 
-### **Problem with Basic Factory**:
+### Problem with Basic Factory:
 Adding new object types still requires modifying the factory (e.g., `CakeFactory`). This violates OCP for the factory class itself.
 
-### **Implementation**:
+### Implementation:
 
-#### **Abstract Factory Class**:
+#### Abstract Factory Class:
 Defines the factory method, allowing concrete factories to provide their own implementations.
 ```csharp
 public abstract class CakeFactory
@@ -65,7 +65,7 @@ public abstract class CakeFactory
 }
 ```
 
-#### **Concrete Factories**:
+#### Concrete Factories:
 Each concrete factory creates a specific type of cake.
 ```csharp
 public class ChocolateCakeFactory : CakeFactory
@@ -79,32 +79,32 @@ public class VanillaCakeFactory : CakeFactory
 }
 ```
 
-#### **Usage**:
+#### Usage:
 ```csharp
 CakeFactory factory = new ChocolateCakeFactory();
 Cake chocolateCake = factory.CreateCake();
 chocolateCake.Prepare();
 ```
 
-### **Advantages**:
+### Advantages:
 - Adding new types of cakes involves only creating a new factory class.
 - Existing factories remain unchanged (adheres to OCP).
 
 ---
 
-## **3. Abstract Factory Pattern**
+## Abstract Factory Pattern
 
-### **Concept**:
-- An **Abstract Factory** is a super-factory that creates other factories.
+### Concept:
+- An Abstract Factory is a super-factory that creates other factories.
 - It is useful when dealing with multiple families of related objects.
 
-### **Problem with Factory Method**:
+### Problem with Factory Method:
 What if there are multiple families of products (e.g., Cakes and Steaks)? The client would still need to know about different factories, increasing complexity.
 
-### **Solution**:
+### Solution:
 Use an abstract factory to produce related product families.
 
-#### **Abstract Factory Class**:
+#### Abstract Factory Class:
 ```csharp
 public abstract class AbstractFactory
 {
@@ -113,7 +113,7 @@ public abstract class AbstractFactory
 }
 ```
 
-#### **Concrete Factories**:
+#### Concrete Factories:
 Factories for specific product families (Cakes and Steaks).
 ```csharp
 public class CakeFactory : AbstractFactory
@@ -148,7 +148,7 @@ public class SteakhouseFactory : AbstractFactory
 }
 ```
 
-#### **Factory Producer**:
+#### Factory Producer:
 Centralized factory selector.
 ```csharp
 public class FactoryProducer
@@ -165,7 +165,7 @@ public class FactoryProducer
 }
 ```
 
-#### **Usage**:
+#### Usage:
 ```csharp
 AbstractFactory cakeFactory = FactoryProducer.CreateFactory("cake");
 Cake vanillaCake = cakeFactory.CreateCake("vanilla");
@@ -174,18 +174,6 @@ AbstractFactory steakFactory = FactoryProducer.CreateFactory("steak");
 Steak sirloinSteak = steakFactory.CreateSteak("sirloin");
 ```
 
-### **Advantages**:
+### Advantages:
 - Encapsulates the creation of related product families.
 - Client is decoupled from the specific factories and product implementations.
-
----
-
-### **Summary of Patterns**
-
-| Pattern                  | Key Idea                                    | Use Case                                      |
-|--------------------------|---------------------------------------------|----------------------------------------------|
-| **Factory Pattern**      | Centralizes object creation logic.         | Avoid exposing instantiation to the client. |
-| **Factory Method**       | Abstracts object creation to subclasses.   | Adhere to OCP when adding new object types. |
-| **Abstract Factory**     | Creates families of related objects.       | Handle multiple product families elegantly. |
-
-Each pattern builds on the previous one, offering increasing levels of abstraction and flexibility.

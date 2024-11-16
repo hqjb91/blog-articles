@@ -1,4 +1,4 @@
-# Understanding OAuth 2.0
+# OAuth 2.0
 
 OAuth 2.0 is a widely used protocol for authorization, enabling applications to securely access resources on behalf of a user. This article outlines the main components, grant types, and a practical implementation example using GitHub and Spring Boot.
 
@@ -6,7 +6,7 @@ OAuth 2.0 is a widely used protocol for authorization, enabling applications to 
 
 An OAuth 2.0 implementation involves three key components:
 
-### 1. Client
+### Client
 - Uses `client_id` and `client_secret` to identify itself to an authorization server.
 - Obtains resources from the resource server.
 
@@ -22,7 +22,7 @@ An OAuth 2.0 implementation involves three key components:
 
 OAuth 2.0 supports four main grant types, each suited for different scenarios:
 
-### 1. Authorization Code Grant Type
+### Authorization Code Grant Type
 **Typical Usage**: Web applications (e.g., using Google login for your application).  
 **Flow**:
 1. Client redirects the user to the authorization server's endpoint, passing:
@@ -40,7 +40,7 @@ OAuth 2.0 supports four main grant types, each suited for different scenarios:
 
 ---
 
-### 2. Password Grant Type
+### Password Grant Type
 **Typical Usage**: Deprecated; used when the client and authorization server are maintained by the same organization.  
 **Flow**:
 1. Client requests an access token with:
@@ -49,7 +49,7 @@ OAuth 2.0 supports four main grant types, each suited for different scenarios:
 
 ---
 
-### 3. Client Credentials Grant Type
+### Client Credentials Grant Type
 **Typical Usage**: Application-to-application communication (no user involved).  
 **Flow**:
 1. Client requests an access token with:
@@ -58,7 +58,7 @@ OAuth 2.0 supports four main grant types, each suited for different scenarios:
 
 ---
 
-### 4. Refresh Token Grant Type
+### Refresh Token Grant Type
 Allows clients to obtain a new access token using a valid refresh token.
 
 ---

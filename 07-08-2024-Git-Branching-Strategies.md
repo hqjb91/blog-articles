@@ -1,4 +1,4 @@
-# Git Workflows: Trunk-Based and Git Flow
+# Git Workflows
 
 A comparison of two popular Git workflows, **Trunk-Based Development** and **Git Flow**, including their steps and usage scenarios.
 
@@ -11,7 +11,7 @@ Trunk-Based Development relies on a single main branch. Feature branches are cre
 
 ### Workflow Steps
 
-#### 1. Create and Work on a Feature Branch
+#### Create and Work on a Feature Branch
 ```bash
 git checkout main
 git checkout -b feature_1
@@ -20,16 +20,16 @@ git add .
 git commit -m "Changes to code"
 ```
 
-#### 2. Push the Feature Branch
+#### Push the Feature Branch
 ```bash
 git push origin feature_1
 ```
 
-#### 3. Merge Feature Branch via Pull Request
+#### Merge Feature Branch via Pull Request
 - Create a pull request (PR) to merge `feature_1` into `main`.
 - After approval, merge the PR.
 
-#### 4. Rebase Main Before Working on Another Feature
+#### Rebase Main Before Working on Another Feature
 ```bash
 git checkout main
 git pull --rebase origin main
@@ -38,7 +38,7 @@ git rebase main
 git push origin feature_2
 ```
 
-#### 5. Create a Release Branch
+#### Create a Release Branch
 ```bash
 git checkout main
 git pull --rebase origin main
@@ -56,14 +56,14 @@ Git Flow uses multiple branches, typically `main` and `develop`, to separate rel
 
 ### Workflow Steps
 
-#### 1. Initialize `develop` Branch
+#### Initialize develop Branch
 ```bash
 git checkout main
 git checkout -b develop
 git push origin develop
 ```
 
-#### 2. Create and Work on a Feature Branch
+#### Create and Work on a Feature Branch
 ```bash
 git checkout develop
 git checkout -b feature_1
@@ -72,13 +72,13 @@ git add .
 git commit -m "Changes to code"
 ```
 
-#### 3. Merge Feature Branch into `develop`
+#### Merge Feature Branch into develop
 ```bash
 git checkout develop
 git merge feature_1
 ```
 
-#### 4. Create a Release Branch
+#### Create a Release Branch
 ```bash
 git checkout develop
 git checkout -b release/1
@@ -87,7 +87,7 @@ git checkout main
 git merge release/1
 ```
 
-#### 5. Handle Hotfixes
+#### Handle Hotfixes
 Hotfix branches are based on `main` and used for quick production patches. They are merged back into both `main` and `develop`.
 ```bash
 git checkout main
@@ -95,13 +95,3 @@ git merge hotfix/1
 git checkout develop
 git merge hotfix/1
 ```
-
----
-
-### Comparison of Workflows
-
-| **Aspect**         | **Trunk-Based Development**           | **Git Flow**                      |
-|---------------------|---------------------------------------|-----------------------------------|
-| **Branches**        | Single `main` branch                 | Separate `main` and `develop`    |
-| **Release Process** | Releases are directly cut from `main`| Releases are merged from `develop` into `main` |
-| **Hotfix Handling** | Applied directly to `main`           | Hotfixes branch off `main` and merge into both `main` and `develop` |

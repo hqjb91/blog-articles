@@ -4,7 +4,7 @@ Classless Inter-Domain Routing (CIDR) is a method for allocating IP addresses an
 
 ---
 
-## Classful Addressing System (Historical Context)
+## Classful Addressing System
 
 In the past, IP address allocation followed a **classful addressing system** with fixed prefix lengths. An IPv4 address consists of 32 bits, divided into four 8-bit segments (octets) separated by periods, each ranging from 0 to 255.
 
@@ -57,7 +57,7 @@ CIDR introduced **variable-length subnet masking (VLSM)**, which allows more eff
 
 IPv6 is the next-generation addressing system, designed to replace IPv4 with significantly more address space. It uses **128-bit unique identifiers**, expressed as colon-separated hexadecimal values.
 
-### IPv6 Features:
+### IPv6 Features
 - Vastly larger address space to accommodate growing internet-connected devices.
 - Supports CIDR, enabling aggregation with variable-length prefixes like IPv4.
   - Example: `2001:0db8:/32`
@@ -67,14 +67,14 @@ IPv6 is the next-generation addressing system, designed to replace IPv4 with sig
 
 ## Examples and Practical Applications
 
-### Subnet Masks:
+### Subnet Masks
 - A subnet mask defines the network and host portion of an IP address.
 - Example:
   - `/8` corresponds to:
     - Binary: `11111111.00000000.00000000.00000000`.
     - Decimal: `255.0.0.0`.
 
-### Home Network Example:
+### Home Network Example
 - A typical household network uses a subnet mask of `255.255.255.0` or `/24`.
   - Binary: `11111111.11111111.11111111.00000000`.
   - Details:

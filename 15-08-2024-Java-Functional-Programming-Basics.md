@@ -23,7 +23,7 @@ void accept(T t);
 default Consumer<T> andThen(Consumer<? super T> after);
 ```
 
-#### Traditional For-Loop Example:
+#### Traditional For-Loop Example
 
 Instead of using a traditional `for` loop to print a collection of strings:
 
@@ -41,7 +41,7 @@ animals.forEach(animal -> {
 });
 ```
 
-#### Lambda Expression Breakdown:
+#### Lambda Expression Breakdown
 
 The lambda expression in the above example:
 
@@ -76,7 +76,7 @@ Method references simplify lambda expressions that merely invoke an existing met
 
 ## Key Functional Interfaces
 
-### 1. **Supplier Interface**
+### Supplier Interface
 The `Supplier` interface is used to supply objects without any input. It has the following SAM:
 
 ```java
@@ -92,7 +92,7 @@ System.out.println(stringSupplier.get());
 
 ---
 
-### 2. **Predicate Interface**
+### Predicate Interface
 The `Predicate` interface is used for conditional checks. It defines the following SAM and additional methods:
 
 ```java
@@ -112,7 +112,7 @@ System.out.println(isEven.test(4)); // Output: true
 
 ---
 
-### 3. **Function Interface**
+### Function Interface
 The `Function` interface is used for transformations. It defines the following SAM and additional methods:
 
 ```java

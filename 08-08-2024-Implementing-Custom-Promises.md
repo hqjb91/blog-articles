@@ -2,7 +2,7 @@
 
 This article demonstrates how to create a custom implementation of Promises in JavaScript. The implementation progresses through naive, asynchronous, and chaining support, leading to a fully functional Promise structure.
 
-## 1. Naive Implementation
+## Naive Implementation
 
 ### Code
 
@@ -56,7 +56,7 @@ class CustomPromise {
 
 ---
 
-## 2. Adding Asynchronous Support
+## Adding Asynchronous Support
 
 ### Code
 
@@ -115,7 +115,7 @@ class CustomPromise {
 
 ---
 
-## 3. Adding Chaining Support
+## Adding Chaining Support
 
 ### Code
 
@@ -193,7 +193,7 @@ class CustomPromise {
 
 ---
 
-## 4. Test Case
+## Test Case
 
 ```javascript
 const testPromise = new CustomPromise((resolve, reject) => {

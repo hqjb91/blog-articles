@@ -37,7 +37,7 @@ The **Fluent Builder Design Pattern** is a **creational pattern** used to create
 
 ## Example: Building a WorkflowDefinition
 
-### Target Class (`WorkflowDefinition`)
+### Target Class
 The target class represents a workflow definition with properties like ID, Name, Description, Version, and Steps.
 
 ```csharp
@@ -51,7 +51,7 @@ public class WorkflowDefinition
 }
 ```
 
-### Builder Class (`WorkflowDefinitionBuilder`)
+### Builder Class
 
 The builder class encapsulates the logic for constructing `WorkflowDefinition` objects. It implements the following:
 
@@ -72,7 +72,7 @@ public IWorkflowDefinitionBuilder AddName(string name)
 }
 ```
 
-#### `Build()` Method
+#### Build Method
 The `Build()` method assigns a unique `Guid` to the workflow definition and returns the completed object:
 
 ```csharp
