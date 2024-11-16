@@ -1,81 +1,99 @@
-Quick Sort
-- Time Complexity
-	- O(nlogn)
-	- Divide and conquer, imagine completing half at each step
-		- e.g. if you have 8 elements
-			- 1st step 4 batches of 2 elements sorted
-			- 2nd step 2 batches of 4 elements sorted
-			- 3rd step 1 batch of 8 elements sorted
-			- 3 steps = log2(8)
-			- i.e. 2^3 = 8
-- Advantages
-	- Even though quick sort and merge sort are both O(nlogn) on average case quick sort is faster
-	- Worst time complexity is actually O(n^2)
-- Disadvantages
-	- Not stable i.e. elements of the same ordinals may be sorted differently
+# Sorting Algorithm Comparison and Implementation in Javascript
 
-Code in Javascript :
+## **Quick Sort**
 
-```
-const testInput = [1,9,8,3,6,5,7,7];
+### **Time Complexity**
+- **Average case**: \(O(n\log n)\)
+  - Uses the divide-and-conquer strategy. Example with 8 elements:
+    - Step 1: Split into 4 batches of 2 elements.
+    - Step 2: Merge into 2 batches of 4 elements.
+    - Step 3: Final merge into 1 batch of 8 elements.
+    - Total steps = \( \log_2(8) = 3 \).
+- **Worst case**: \(O(n^2)\) (occurs when the pivot selection is poor, e.g., sorted input with a bad pivot choice).
+
+### **Advantages**
+- Faster than merge sort on average, with less overhead.
+- Performs in-place sorting, requiring less memory compared to merge sort.
+
+### **Disadvantages**
+- Not stable: Elements with the same value might not retain their relative order.
+- Worst-case performance can degrade to \(O(n^2)\) with poor pivot choices.
+
+### **Implementation in JavaScript**
+```javascript
+const testInput = [1, 9, 8, 3, 6, 5, 7, 7];
 
 const quickSort = (input) => {
-	if (input.length < 2) return input; // Base case
+    if (input.length < 2) return input; // Base case for recursion
 
-	const pivot = input[0]; // Choose pivot to be left most element
-	const left = []; // Initialize left and right arrays
-	const right = [];
-	for (let i=1; i<input.length; i++) { // Loop through rest of elements
-		if (input[i] < pivot) { // Place all the elements lesser to left
-			left.push(input[i]);
-		} else {
-			right.push(input[i]);
-		}
-	}
-	return [...quickSort(left), pivot, ...quickSort(right)]; 
-	// Where recursive leap of faith magick happens
-}
+    const pivot = input[0]; // Choose the first element as the pivot
+    const left = input.slice(1).filter(el => el < pivot); // Elements less than pivot
+    const right = input.slice(1).filter(el => el >= pivot); // Elements greater than or equal to pivot
 
-const testAnswer = quickSort(testInput);
-console.log(testAnswer);
+    return [...quickSort(left), pivot, ...quickSort(right)]; // Recursively sort and combine
+};
+
+const sortedArray = quickSort(testInput);
+console.log(sortedArray); // Output: [1, 3, 5, 6, 7, 7, 8, 9]
 ```
 
-Merge Sort
--  Time Complexity
-	- O(nlogn)
-- Advantages
-	- Stable i.e. elements of the same ordinals are sorted equally
-- Disadvantages
-	- Average time complexity slower than quick sort
+---
 
-Code in Javascript :
+## **Merge Sort**
 
-```
-const testInput = [1,9,8,3,6,5,7,7];
+### **Time Complexity**
+- **Best, Worst, and Average case**: \(O(n\log n)\).
+- Uses divide-and-conquer but requires additional memory for temporary arrays.
+
+### **Advantages**
+- Stable: Retains the relative order of elements with equal values.
+- Consistent \(O(n\log n)\) performance, even for worst-case inputs.
+
+### **Disadvantages**
+- Slower than quick sort in practice due to additional memory usage.
+- Requires extra space for temporary arrays, which makes it less efficient for large datasets.
+
+### **Implementation in JavaScript**
+```javascript
+const testInput = [1, 9, 8, 3, 6, 5, 7, 7];
 
 const mergeSort = (input) => {
-	if (input.length < 2) return input; // Base case
+    if (input.length < 2) return input; // Base case for recursion
 
-	const middle = Math.floor(input.length/2);
-	const left = input.slice(0, middle);
-	const right = input.slice(middle);
-	
-	return merge(mergeSort(left), mergeSort(right)); 
-	// Require helper function to perform recursive merge magick
-}
+    const mid = Math.floor(input.length / 2); // Find the middle index
+    const left = mergeSort(input.slice(0, mid)); // Recursively sort the left half
+    const right = mergeSort(input.slice(mid)); // Recursively sort the right half
 
-// Helper function that merges 2 sorted arrays (We just assume they are)
-const merge = (left, right) => { 
-	const result = [];
-	while (left.length > 0 && right.length > 0) {
-		if (left[0] <= right[0]) result.push(left.shift());
-		if (left[0] > right[0]) result.push(right.shift());
-	}
-	
-	return [...result, ...left, ...right];
-}
+    return merge(left, right); // Merge the sorted halves
+};
 
-const testAnswer = mergeSort(testInput);
-console.log(testAnswer);
+// Helper function to merge two sorted arrays
+const merge = (left, right) => {
+    const result = [];
+    while (left.length && right.length) {
+        if (left[0] <= right[0]) {
+            result.push(left.shift()); // Remove from left and push to result
+        } else {
+            result.push(right.shift()); // Remove from right and push to result
+        }
+    }
+    return [...result, ...left, ...right]; // Concatenate remaining elements
+};
 
+const sortedArray = mergeSort(testInput);
+console.log(sortedArray); // Output: [1, 3, 5, 6, 7, 7, 8, 9]
 ```
+
+---
+
+## **Comparison**
+
+| Feature                | Quick Sort               | Merge Sort                 |
+|------------------------|--------------------------|----------------------------|
+| **Time Complexity**    | \(O(n\log n)\) (avg), \(O(n^2)\) (worst) | \(O(n\log n)\) (all cases) |
+| **Space Complexity**   | \(O(\log n)\) (in-place) | \(O(n)\) (extra memory)    |
+| **Stability**          | Not stable              | Stable                     |
+| **Performance**        | Faster in practice      | Slower due to overhead     |
+| **Best Use Case**      | Large datasets, average-case efficiency | Small datasets or when stability is needed |
+
+Both algorithms are efficient and widely used, but their application depends on the specific requirements of your problem.
