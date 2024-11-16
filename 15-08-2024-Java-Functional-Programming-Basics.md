@@ -1,90 +1,130 @@
-#### Introduction
+# Introduction to Functional Programming in Java 8
 
-Java is notably an object-oriented programming language. However, with the current trend towards functional programming, Java 8 introduces Lambda Expressions, Functional Interfaces and Method References in order to make Java compatible with the simplicity of Functional Programming.
+Java is renowned as an object-oriented programming (OOP) language. However, to adapt to the growing trend of functional programming, Java 8 introduced **Lambda Expressions**, **Functional Interfaces**, and **Method References**. These features enable Java developers to write concise, functional-style code while maintaining compatibility with OOP principles.
 
-This allows us to write code that provides "single functionality" as is, without the need for a class. In essence, we can mimic functional languages such as Javascript and write functions that run as is or anonymous functions. How Java 8 reconciles this with OOP is by introducting Functional Interfaces.
+With these features, developers can write "single functionality" code, akin to functional languages like JavaScript. Java reconciles this functional approach with its OOP paradigm through the concept of **Functional Interfaces**.
 
-#### Functional Interfaces
+---
 
-Functional Interfaces are nothing but an interface that contains only one abstract method we call the Single Abstract Method(SAM) and can have any number of default methods. It is recommended to annotate Functional Interfaces with @FunctionalInterface.
+## Functional Interfaces
 
-Functional interfaces are especially useful when we have a method that takes in a functional interface as a parameter, because we can then use either the Anonymous class, Functional Interface or Method Reference to pass into the parameter to greatly shorten the boilerplate code.
+A **Functional Interface** is an interface that contains only one abstract method, known as the **Single Abstract Method (SAM)**. These interfaces may also include any number of `default` or `static` methods. Functional Interfaces are annotated with `@FunctionalInterface` to ensure adherence to this single-method contract.
 
-Consumer Interface has a SAM of accept :
+Functional Interfaces are particularly useful for reducing boilerplate code. They allow us to pass functionality to methods using **Lambda Expressions**, **Anonymous Classes**, or **Method References**.
 
-```
+---
+
+### Example: The Consumer Interface
+
+The `Consumer` interface is a functional interface that defines the following methods:
+
+```java
 void accept(T t);
-default Consumer andThen(Consumer< ? super T > after);
+default Consumer<T> andThen(Consumer<? super T> after);
 ```
 
-We can then utilise the consumer interface as such e.g the Iterable interface has a forEach method :
+#### Traditional For-Loop Example:
 
-```
-void forEach(Consumer< ? super T > action)
-```
+Instead of using a traditional `for` loop to print a collection of strings:
 
-So that instead of using the for loop version of printing a Collection of Strings we can use the forEach :
-
-```
-for (String animal: animals) {
-	System.out.println(animal);
+```java
+for (String animal : animals) {
+    System.out.println(animal);
 }
+```
 
+We can use the `Consumer` interface with the `forEach` method:
+
+```java
 animals.forEach(animal -> {
-	System.out.println(animal);
+    System.out.println(animal);
 });
 ```
 
-where,
+#### Lambda Expression Breakdown:
 
-```
+The lambda expression in the above example:
+
+```java
 animal -> {
-	System.out.println(animal);
+    System.out.println(animal);
 }
 ```
 
-Is the lambda function, that represents an implemented Consumer interface with the animal as the parameter of the SAM and the statements inside the {} as the body of the SAM.
+- **`animal`** is the parameter of the SAM.
+- The statements inside `{}` are the body of the SAM.
 
-E.g. the lambda function is equivalent to the following anonymous class :
+This is equivalent to the following **Anonymous Class** implementation:
 
-```
-Consumer< String > printConsumer = new Consumer< String >() {
+```java
+Consumer<String> printConsumer = new Consumer<String>() {
     public void accept(String animal) {
         System.out.println(animal);
-    };
+    }
 };
 ```
 
-The lambda function is also equivalent to the following method reference:
+It is also equivalent to the following **Method Reference**:
 
+```java
+animals.forEach(System.out::println);
 ```
-System.out::println
-```
 
-A method reference can replace a lambda expression when we only have a single method call because sometimes the lambda expression does nothing but call an existing method. We can then just refer to the existing method by name.
+Method references simplify lambda expressions that merely invoke an existing method.
 
-Supplier Interface has a SAM of get :
+---
 
-```
+## Key Functional Interfaces
+
+### 1. **Supplier Interface**
+The `Supplier` interface is used to supply objects without any input. It has the following SAM:
+
+```java
 T get();
 ```
 
-Predicate Interface has a SAM of test with a few default and static methods :
+Example:
 
-```
-default Predicate< T > and(Predicate< ? super T > other);
-default Predicate< T > or(Predicate< ? super T > other);
-static < T > Predicate< T > isEquals(Object targetRef);
-default Predicate< T > negate();
+```java
+Supplier<String> stringSupplier = () -> "Hello, World!";
+System.out.println(stringSupplier.get());
 ```
 
-Function Interface has a SAM of apply with a few default and static methods :
+---
 
+### 2. **Predicate Interface**
+The `Predicate` interface is used for conditional checks. It defines the following SAM and additional methods:
+
+```java
+boolean test(T t);
+default Predicate<T> and(Predicate<? super T> other);
+default Predicate<T> or(Predicate<? super T> other);
+default Predicate<T> negate();
+static <T> Predicate<T> isEqual(Object targetRef);
 ```
+
+Example:
+
+```java
+Predicate<Integer> isEven = number -> number % 2 == 0;
+System.out.println(isEven.test(4)); // Output: true
+```
+
+---
+
+### 3. **Function Interface**
+The `Function` interface is used for transformations. It defines the following SAM and additional methods:
+
+```java
 R apply(T t);
-default < V > Function< T, V > 
-andThen(Function after);
-default < V > Function< V, R > 
-compose(Function< ? super V, ? extends T > before);
-static < T > Function< T, T > identity();
+default <V> Function<T, V> andThen(Function<? super R, ? extends V> after);
+default <V> Function<V, R> compose(Function<? super V, ? extends T> before);
+static <T> Function<T, T> identity();
+```
+
+Example:
+
+```java
+Function<Integer, String> intToString = num -> "Number: " + num;
+System.out.println(intToString.apply(5)); // Output: Number: 5
 ```

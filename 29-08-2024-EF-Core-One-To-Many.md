@@ -1,63 +1,123 @@
-Notes based on Microsoft Documentation : https://learn.microsoft.com/en-us/ef/core/modeling/relationships/one-to-many
-## Required One-To-Many Relationship
+# One-To-Many Relationships (Entity Framework Core)
 
-Example Entities :
+One-to-many relationships in EF Core are fundamental to modeling relationships between entities. Below is a breakdown based on the provided notes and **Microsoft Documentation**.
+
+---
+
+## **Required One-To-Many Relationship**
+
+### Example Entities:
 ```csharp
-public class EAVEntity // Parent Entity mapped to a user defined table
+public class EAVEntity // Parent entity
 {
-    [Key]
-    public long Id { get; set; } // Primary Key for the Entity (1)
-    public string Name { get; set;} = string.Empty;
-    public string Description { get; set;} = string.Empty;
-    // Optional Collection Navigation to reference dependent entities (3)
-    public ICollection<EAVAttribute> EAVAttributes { get; set; } = new List<EAVAttribute>();
+    [Key]
+    public long Id { get; set; } // Primary Key (1)
+    public string Name { get; set;} = string.Empty;
+    public string Description { get; set;} = string.Empty;
+    // Optional collection navigation property (3)
+    public ICollection<EAVAttribute> EAVAttributes { get; set; } = new List<EAVAttribute>();
 }
 
-public class EAVAttribute // Attribute Entity mapped to user defined columns
+public class EAVAttribute // Child entity
 {
-    [Key]
-    public long Id { get; set; }
-    public string AttributeName { get; set; } = string.Empty;
-    public long EAVEntityId { get; set; } // Required foreign key property (2)
-    public EAVEntity EAVEntity { get; set; } = null!; // Required reference navigation to parent entity (4)
+    [Key]
+    public long Id { get; set; } // Primary Key
+    public string AttributeName { get; set; } = string.Empty;
+    public long EAVEntityId { get; set; } // Required foreign key property (2)
+    public EAVEntity EAVEntity { get; set; } = null!; // Required reference navigation (4)
 }
 ```
-A one-to-many relationship is made up from :
-1. Primary key on the principal entity (EAVEntity.Id)
-2. Foreign key on the children entities (EAVAttribute.EAVEntityId)
-3. Optional collection navigation on the principal entity (EAVEntity.EVAAttributes)
-4. Reference navigation on the children entities (EAVAttribute.EAVEntity)
 
-So, for the relationship in this example:
-1. The foreign key property EAVAttribute.EAVEntityId (2) is not nullable making the relationship required because every EAVAttribute must be related to some parent EAVEntity i.e. child cannot exist without a parent
-2. Note that for required relationship child must always have a parent but a parent can exist without any children entities
+### Key Relationship Components:
+1. **Principal Entity (Parent)**:  
+   - Primary Key: `EAVEntity.Id` (1).
+   - Optional **Collection Navigation**: `EAVEntity.EAVAttributes` (3).
 
-Relationship (1), (2), (3), (4) is discovered by convention.
+2. **Dependent Entity (Child)**:  
+   - Foreign Key: `EAVAttribute.EAVEntityId` (2).
+   - Required **Reference Navigation**: `EAVAttribute.EAVEntity` (4).
 
-If these relationships are not discovered by convention we can use explicit configuration.
-We can either start with the parent : 
+### Behavior:
+- A **required relationship** mandates that every `EAVAttribute` (child) must be related to an `EAVEntity` (parent).  
+- The **foreign key (`EAVAttribute.EAVEntityId`) is not nullable**, ensuring the dependency.  
+- The **parent (`EAVEntity`) can exist without children**, but a **child cannot exist without a parent**.
+
+### EF Core Configuration:
+
+#### Discovered by Convention:
+If naming conventions and navigation properties match EF Core's expectations, the relationship will be automatically inferred.
+
+#### Explicit Configuration:
+If conventions are not met or customization is needed, you can configure the relationship explicitly.
+
+**Starting from the Parent:**
 ```csharp
-protected override void OnModelCreating(ModelBuilder modelBuilder) 
-{ 
-	modelBuilder.Entity<EAVEntity>() 
-		.HasMany(e => e.EAVAttribute) 
-		.WithOne(e => e.EAVEntity) 
-		.HasForeignKey(e => e.EAVEntityId) 
-		.IsRequired(); 
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<EAVEntity>()
+        .HasMany(e => e.EAVAttributes) // Navigation to children
+        .WithOne(e => e.EAVEntity) // Reference to parent
+        .HasForeignKey(e => e.EAVEntityId) // Foreign key
+        .IsRequired(); // Ensure it's required
 }
 ```
 
-or start with the child :
+**Starting from the Child:**
 ```csharp
-protected override void OnModelCreating(ModelBuilder modelBuilder) 
-{ 
-	modelBuilder.Entity<EAVAttribute>() 
-		.HasOne(e => e.EAVEntity) 
-		.WithMany(e => e.EAVAttribute) 
-		.HasForeignKey(e => e.EAVEntityId) 
-		.IsRequired(); 
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<EAVAttribute>()
+        .HasOne(e => e.EAVEntity) // Reference to parent
+        .WithMany(e => e.EAVAttributes) // Navigation to children
+        .HasForeignKey(e => e.EAVEntityId) // Foreign key
+        .IsRequired(); // Ensure it's required
 }
 ```
-## Optional One-To-Many Relationship
 
-Optional One-To-Many Relationship is the same as above except the foreign key is now nullable and if explicit configuration is used the .IsRequired(false) is passed with the false argument.
+---
+
+## **Optional One-To-Many Relationship**
+
+### Key Differences:
+- In an **optional relationship**, the **foreign key (`EAVAttribute.EAVEntityId`) is nullable**.
+- A child (`EAVAttribute`) **can exist without a parent**.
+
+### Changes in Configuration:
+For optional relationships, the **`.IsRequired(false)`** method is used.
+
+**Explicit Configuration for Optional Relationships:**
+
+**Starting from the Parent:**
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<EAVEntity>()
+        .HasMany(e => e.EAVAttributes)
+        .WithOne(e => e.EAVEntity)
+        .HasForeignKey(e => e.EAVEntityId)
+        .IsRequired(false); // Optional relationship
+}
+```
+
+**Starting from the Child:**
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<EAVAttribute>()
+        .HasOne(e => e.EAVEntity)
+        .WithMany(e => e.EAVAttributes)
+        .HasForeignKey(e => e.EAVEntityId)
+        .IsRequired(false); // Optional relationship
+}
+```
+
+---
+
+## Summary of Differences
+
+| Feature                            | Required Relationship       | Optional Relationship       |
+|------------------------------------|-----------------------------|-----------------------------|
+| **Foreign Key Nullability**        | Non-nullable                | Nullable                   |
+| **Child Without Parent**           | Not Allowed                 | Allowed                    |
+| **Parent Without Children**        | Allowed                     | Allowed                    |
+| **Explicit Configuration**         | `.IsRequired()`             | `.IsRequired(false)`       |

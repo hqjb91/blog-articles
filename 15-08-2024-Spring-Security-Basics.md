@@ -1,19 +1,38 @@
-#### Introduction
+# Introduction to Spring Security
 
-Spring Security is a convention over configuration framework and the default configuration for a simple project is the HTTP Basic access authentication where the client is only required to send a username and password through the HTTP Authorization header, with the prefix Basic and Base64 encoded string of username and password.
+Spring Security is a **convention-over-configuration** framework designed to handle authentication and authorization in Java applications. By default, it uses **HTTP Basic Authentication**, where the client sends a `username` and `password` in the `Authorization` header, prefixed with `Basic`, followed by a Base64-encoded string of the credentials.
 
-When you add the Spring Security dependency to your Spring Boot application, it automagically adds Spring Security Servlet Filters Chain to your Spring Boot application in the default configuration. However, if you are not using Spring Boot you would have to add the filter to your web.xml file manually. The Spring Security filters will work on the wildcard path "/*" and intercept all requests. The starting filter is called the Delegating Filter Proxy and this filter delegates the different features to different filters in the filter chain. One of the filter is called the Authentication filter that intercepts all authentication requests and initiates authentication process and there are also Authorization related filters.
+## How Spring Security Works
 
-To create the most simple bare bones Spring Security project, we start by importing the following dependencies Spring Web, Spring Dev Tools and Spring Security.
+When you add the Spring Security dependency to a **Spring Boot** application, it automatically configures a **Servlet Filter Chain** to intercept and secure requests. The filter chain includes several filters for authentication and authorization. 
 
-We then create a simple endpoint to test out the default security configurations provided :
+In non-Spring Boot projects, the security filter must be manually added to the `web.xml` file. The key filter, **Delegating Filter Proxy**, delegates various security tasks to specialized filters in the chain. Two essential filters include:
 
-src.main.java.com.reku.controller - HelloController.java
+1. **Authentication Filter**: Handles authentication requests.
+2. **Authorization Filters**: Manage access control for protected resources.
 
-```
+---
+
+## Setting Up a Basic Spring Security Application
+
+### Dependencies
+
+To create a minimal Spring Security project, add the following dependencies:
+
+- **Spring Web**
+- **Spring DevTools**
+- **Spring Security**
+
+### Create a Simple Secured Endpoint
+
+Here’s a basic REST endpoint to test default security configurations:
+
+**`HelloController.java`**  
+
+```java
 @RestController
 public class HelloController {
-    
+
     @GetMapping("/hello")
     public String hello() {
         return "Hello";
@@ -21,45 +40,97 @@ public class HelloController {
 }
 ```
 
-With this the endpoint http://localhost:8080/hello is protected with basic authentication unless we log in with the password provided in the console logs and the default username “user” by using the below command in the command line :
+By default, accessing `http://localhost:8080/hello` requires authentication. Spring Security protects this endpoint using **Basic Authentication**. Use the credentials provided in the console logs:
 
-```
-curl –u user:password http://localhost:8080/hello
-```
+- **Username**: `user`
+- **Password**: Automatically generated (visible in logs).
 
-Which is shortcut for the below :
+Test using the following `curl` command:
 
-```
-echo –n user:password | base64
-< Base64 String is returned >
-curl –H “Authorization: Basic ” localhost:8080/hello
+```bash
+curl -u user:password http://localhost:8080/hello
 ```
 
-In the Authentication process, the Authentication object holds both the credentials(input) of the users and once the user is authenticated it holds the principal(output) which contains information about the logged in user.
+This is equivalent to:
 
-An AuthenticationProvider is the interface that has a method called authenticate() and implementation of this interface and method in our application. Spring Security will put the passed in credentials into an Authentication object and use this method to check the credentials passed in. The authenticate method will then return an Authentication that will hold information of the principal.
+1. Generating the Base64 string for credentials:
 
-An application can have multiple AuthenticationProviders with each one having different authentcation methods e.g. Basic Authentication, LDAP Authentication. In order to coordinate these Providers, we use the AuthenticationManager. In order for the AuthenticationManager to find the correct AuthenticationManager, it calls the supports() method of the AuthenticationProvider.
+    ```bash
+    echo -n user:password | base64
+    ```
 
-AuthenticationProviders will require a way to retrieve user information the identity store(be it a database, LDAP store) which may be different from Provider to Provider even though the steps of verifying it after retrieving it is the same. Hence, Spring Security has extracted this out into the UserDetailsService which has a method called loadUserByUserName() which takes in a username and returns an object called UserDetails.
+2. Sending the `Authorization` header:
 
+    ```bash
+    curl -H "Authorization: Basic <Base64-encoded string>" http://localhost:8080/hello
+    ```
 
-In case we want to protect our endpoints with SSL/TLS, we can generate our own self-signed certificate :
+---
 
+## Authentication and Authorization Process
+
+### Authentication Flow
+
+During authentication, the **Authentication** object plays a key role:
+
+1. **Input**: Contains user credentials (e.g., username and password).
+2. **Output**: After authentication, contains user details (`Principal`), representing the authenticated user.
+
+---
+
+### AuthenticationProvider
+
+The `AuthenticationProvider` interface defines the method:
+
+```java
+Authentication authenticate(Authentication authentication);
 ```
-openssl req –newkey rsa:2048 –x509 –keyout key.pem –out cert.pem –days 365
+
+- The implementation checks credentials and returns an `Authentication` object holding the `Principal`.
+- An application can use multiple `AuthenticationProviders` for various methods (e.g., Basic Auth, LDAP).
+
+To determine the correct provider, the `AuthenticationManager` invokes the `supports()` method of each `AuthenticationProvider`.
+
+---
+
+### UserDetailsService
+
+To retrieve user information from an identity store (e.g., database, LDAP), Spring Security uses `UserDetailsService`. It defines the method:
+
+```java
+UserDetails loadUserByUsername(String username);
 ```
 
-This will output key.pem (private key) and cert.pem (public certificate). We will then use these files to further generate self-signed certification. We can use JKS or PKCS12. We will use PKCS12 :
+This method returns a `UserDetails` object containing the user’s credentials and roles.
 
-```
-openssl pkcs12 –export –in  cert.pem –inkey key.pem –out certificate.p12 –name “certificate”
-```
+---
 
-With the outputted self-signed certificate, we can configure HTTPS for the endpoints in application.properties :
+## Enabling SSL/TLS for Secure Endpoints
 
-```
+### Generating a Self-Signed Certificate
+
+You can secure your application with HTTPS by generating a self-signed certificate:
+
+1. Generate the private key and public certificate:
+
+    ```bash
+    openssl req -newkey rsa:2048 -x509 -keyout key.pem -out cert.pem -days 365
+    ```
+
+2. Create a **PKCS12** keystore from the certificate:
+
+    ```bash
+    openssl pkcs12 -export -in cert.pem -inkey key.pem -out certificate.p12 -name "certificate"
+    ```
+
+### Configuring HTTPS in Spring Boot
+
+Add the following properties in `application.properties` to enable HTTPS:
+
+```properties
 server.ssl.key-store-type=PKCS12
 server.ssl.key-store=classpath:certificate.p12
 server.ssl.key-store-password=password
 ```
+
+With this configuration, Spring Boot will use the self-signed certificate to secure endpoints over HTTPS.

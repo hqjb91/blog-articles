@@ -1,220 +1,191 @@
-The Factory Design Pattern is a Creational design pattern to decouple the code that creates the objects from the object itself.
+# Factory Design Patterns
 
-### Without using the Factory Pattern
+## Introduction
 
-E.g. This restaurant class below relies on the object's constructor to create and each new object will require a change to the restaurant class violating the open-close principle :
+The Factory family of patterns is central to designing modular, scalable, and loosely coupled systems. Below is a breakdown of the **Factory Pattern**, **Factory Method Pattern**, and **Abstract Factory Pattern**, illustrated with examples.
 
+---
+
+## **1. Factory Design Pattern**
+
+### **Concept**:
+- The Factory Pattern decouples object creation from the client. 
+- Instead of creating objects directly using constructors, the client uses a factory method.
+
+### **Problem without Factory**:
+Direct instantiation ties the client to concrete classes, violating the **Open-Closed Principle** (OCP). Adding new object types requires modifying existing client code.
+
+#### Example Without Factory:
+```csharp
+Cake chocolateCake = new ChocolateCake(); // Tightly coupled
 ```
-public class Program 
-{ 
-	public static void Main() 
-	{ 
-		// Manually creating different types of cakes 
-		Cake chocolateCake = new ChocolateCake(); 
-		chocolateCake.Prepare(); 
-		chocolateCake.Bake(); 
-		chocolateCake.Decorate(); 
-		
-		Cake vanillaCake = new VanillaCake(); 
-		vanillaCake.Prepare(); 
-		vanillaCake.Bake(); 
-		vanillaCake.Decorate(); 
-		
-		Cake cheeseCake = new CheeseCake(); 
-		cheeseCake.Prepare(); 
-		cheeseCake.Bake(); 
-		cheeseCake.Decorate(); 
-	} 
+
+#### With Factory Pattern:
+The factory centralizes the creation logic.
+
+```csharp
+public class CakeFactory
+{
+    public static Cake CreateCake(string cakeType)
+    {
+        return cakeType.ToLower() switch
+        {
+            "chocolate" => new ChocolateCake(),
+            "vanilla" => new VanillaCake(),
+            "cheesecake" => new Cheesecake(),
+            _ => throw new ArgumentException("Invalid cake type.")
+        };
+    }
 }
 ```
 
-This exposes the instantiation logic to the client as the client code is tightly coupled to the concrete classes VanillaCake, ChocolateCake and CheeseCake. If the client news to introduce a new cake e.g. TiramisuCake, the client code needs to be modified (violates Open-Closed principle for the client class). We can use the Factory Pattern to resolve this :
+#### Advantages:
+- Centralized instantiation logic.
+- Easier to modify instantiation without changing the client.
 
-### Using the Factory Pattern
+---
 
-```
-public class CakeFactory 
-{ 
-	public static Cake CreateCake(string cakeType) 
-	{ 
-		switch (cakeType.ToLower()) 
-		{ 
-			case "chocolate": return new ChocolateCake(); 
-			case "vanilla": return new VanillaCake(); 
-			case "cheesecake": return new Cheesecake(); 
-			default: throw new ArgumentException("Invalid cake type."); 
-		} 
-	} 
-}
+## **2. Factory Method Pattern**
 
-public class Program 
-{ 
-	public static void Main() 
-	{ // Using the factory to create different types of cakes 
-		Cake chocolateCake = CakeFactory.CreateCake("chocolate");
-		chocolateCake.Prepare(); 
-		chocolateCake.Bake(); 
-		chocolateCake.Decorate(); 
-		
-		Cake vanillaCake = CakeFactory.CreateCake("vanilla");
-		vanillaCake.Prepare(); 
-		vanillaCake.Bake(); 
-		vanillaCake.Decorate(); 
-		
-		Cake cheesecake = CakeFactory.CreateCake("cheesecake");
-		cheesecake.Prepare(); 
-		cheesecake.Bake(); 
-		cheesecake.Decorate(); 
-	} 
-}
-```
+### **Concept**:
+- A **creational design pattern** that provides an interface for creating objects but lets subclasses alter the type of objects that will be created.
+- Solves the **Open-Closed Principle** issue of the Factory Pattern.
 
- The client depends on the `CakeFactory` class, which declares a `CreateCake()` method. The client can create cakes without knowing their concrete classes, promoting loose coupling between the objects and the client class.
+### **Problem with Basic Factory**:
+Adding new object types still requires modifying the factory (e.g., `CakeFactory`). This violates OCP for the factory class itself.
 
-However, this still violates the Open-Close principle (Open for extension but Closed for Modification) as every time you add a new Cake you would have to modify the CakeFactory class (which should be Closed for Modification). To overcome this we can use the Factory Method Pattern :
+### **Implementation**:
 
-### Factory Method Pattern
-
-#### Implementation
-
-1. **Abstract Base Factory Class**: We'll create an abstract `CakeFactory` class with an abstract `CreateCake` method.
-2. **Concrete Factory Classes**: Each specific cake type will have its own factory class (`ChocolateCakeFactory`, `VanillaCakeFactory`, etc.) that overrides the `CreateCake` method to create the appropriate cake object.
-
-```
+#### **Abstract Factory Class**:
+Defines the factory method, allowing concrete factories to provide their own implementations.
+```csharp
 public abstract class CakeFactory
 {
     public abstract Cake CreateCake();
-
-    public void MakeCake()
-    {
-        Cake cake = CreateCake(); // Factory Method
-        cake.Prepare();
-        cake.Bake();
-        cake.Decorate();
-    }
 }
+```
 
+#### **Concrete Factories**:
+Each concrete factory creates a specific type of cake.
+```csharp
 public class ChocolateCakeFactory : CakeFactory
 {
-    public override Cake CreateCake()
-    {
-        return new ChocolateCake();
-    }
+    public override Cake CreateCake() => new ChocolateCake();
 }
 
 public class VanillaCakeFactory : CakeFactory
 {
-    public override Cake CreateCake()
-    {
-        return new VanillaCake();
-    }
-}
-
-public class CheesecakeFactory : CakeFactory
-{
-    public override Cake CreateCake()
-    {
-        return new Cheesecake();
-    }
-}
-
-public class Program
-{
-    public static void Main()
-    {
-        // Using the factory method pattern to create cakes
-        CakeFactory chocolateCakeFactory = new ChocolateCakeFactory();
-        chocolateCakeFactory.MakeCake();
-
-        CakeFactory vanillaCakeFactory = new VanillaCakeFactory();
-        vanillaCakeFactory.MakeCake();
-
-        CakeFactory cheesecakeFactory = new CheesecakeFactory();
-        cheesecakeFactory.MakeCake();
-    }
+    public override Cake CreateCake() => new VanillaCake();
 }
 ```
 
-This adheres to the Open-Closed principle as you can easily introduce new types of cakes by adding new factory subclasses without modifying existing factory.
-
-However, imagine if we were to want to introduce another family of object (e.g. Steaks) and we want the client to be independent of newly introduced families of object. We should then use Abstract Factory Pattern which can be thought of as a super factory which creates other factories :
-### Abstract Factory Pattern
-
+#### **Usage**:
+```csharp
+CakeFactory factory = new ChocolateCakeFactory();
+Cake chocolateCake = factory.CreateCake();
+chocolateCake.Prepare();
 ```
-// Abstract Factory Class
+
+### **Advantages**:
+- Adding new types of cakes involves only creating a new factory class.
+- Existing factories remain unchanged (adheres to OCP).
+
+---
+
+## **3. Abstract Factory Pattern**
+
+### **Concept**:
+- An **Abstract Factory** is a super-factory that creates other factories.
+- It is useful when dealing with multiple families of related objects.
+
+### **Problem with Factory Method**:
+What if there are multiple families of products (e.g., Cakes and Steaks)? The client would still need to know about different factories, increasing complexity.
+
+### **Solution**:
+Use an abstract factory to produce related product families.
+
+#### **Abstract Factory Class**:
+```csharp
 public abstract class AbstractFactory
 {
     public abstract Cake CreateCake(string cakeType);
     public abstract Steak CreateSteak(string steakType);
 }
+```
 
+#### **Concrete Factories**:
+Factories for specific product families (Cakes and Steaks).
+```csharp
 public class CakeFactory : AbstractFactory
 {
     public override Cake CreateCake(string cakeType)
     {
-		switch (cakeType.ToLower()) 
-		{ 
-			case "chocolate": return new ChocolateCake(); 
-			case "vanilla": return new VanillaCake(); 
-			case "cheesecake": return new Cheesecake(); 
-			default: throw new ArgumentException("Invalid cake type."); 
-		} 
+        return cakeType.ToLower() switch
+        {
+            "chocolate" => new ChocolateCake(),
+            "vanilla" => new VanillaCake(),
+            "cheesecake" => new Cheesecake(),
+            _ => throw new ArgumentException("Invalid cake type.")
+        };
     }
 
-    public override Steak CreateSteak(string steakType)
-    {
-        return null;
-    }
+    public override Steak CreateSteak(string steakType) => null;
 }
 
 public class SteakhouseFactory : AbstractFactory
 {
-    public override Cake CreateCake(string cakeType)
-    {
-        return null;
-    }
+    public override Cake CreateCake(string cakeType) => null;
 
     public override Steak CreateSteak(string steakType)
     {
-    	switch (steakType.ToLower()) 
-		{ 
-			case "ribeye": return new RibeyeSteak(); 
-			case "sirloin": return new SirloinSteak(); 
-			default: throw new ArgumentException("Invalid steak type.");
-		} 
-    }
-}
-
-public class FactoryProducer
-{
-	public static AbstractFactory CreateFactory(string factoryType)
-	{
-	    switch (steakType.ToLower()) 
-		{ 
-			case "cake": return new CakeFactory(); 
-			case "steak": return new SteakhouseFactory(); 
-			default: throw new ArgumentException("Invalid factory type.");
-		} 
-	}
-}
-
-public class Program
-{
-    public static void Main()
-    {
-        // Create a Cake Factory
-        CakeFactory cakeFactory = FactoryProducer.CreateFactory("cake");
-        VanillaCake vanillaCake = cakeFactory.CreateCake("vanilla");
-        vanillaCake.Prepare();
-        vanillaCake.Bake();
-        vanillaCake.Decorate();
-
-        // Create a Steakhouse Factory
-        SteakhouseFactory steakhouse = new FactoryProducer.CreateFactory("steak");
-        SirloinSteak sirloinSteak = steakhouse.CreateSteak("sirloin");
-        sirloinSteak.Season();
-        sirloinSteak.Cook();
-        sirloinSteak.Serve();
+        return steakType.ToLower() switch
+        {
+            "ribeye" => new RibeyeSteak(),
+            "sirloin" => new SirloinSteak(),
+            _ => throw new ArgumentException("Invalid steak type.")
+        };
     }
 }
 ```
+
+#### **Factory Producer**:
+Centralized factory selector.
+```csharp
+public class FactoryProducer
+{
+    public static AbstractFactory CreateFactory(string factoryType)
+    {
+        return factoryType.ToLower() switch
+        {
+            "cake" => new CakeFactory(),
+            "steak" => new SteakhouseFactory(),
+            _ => throw new ArgumentException("Invalid factory type.")
+        };
+    }
+}
+```
+
+#### **Usage**:
+```csharp
+AbstractFactory cakeFactory = FactoryProducer.CreateFactory("cake");
+Cake vanillaCake = cakeFactory.CreateCake("vanilla");
+
+AbstractFactory steakFactory = FactoryProducer.CreateFactory("steak");
+Steak sirloinSteak = steakFactory.CreateSteak("sirloin");
+```
+
+### **Advantages**:
+- Encapsulates the creation of related product families.
+- Client is decoupled from the specific factories and product implementations.
+
+---
+
+### **Summary of Patterns**
+
+| Pattern                  | Key Idea                                    | Use Case                                      |
+|--------------------------|---------------------------------------------|----------------------------------------------|
+| **Factory Pattern**      | Centralizes object creation logic.         | Avoid exposing instantiation to the client. |
+| **Factory Method**       | Abstracts object creation to subclasses.   | Adhere to OCP when adding new object types. |
+| **Abstract Factory**     | Creates families of related objects.       | Handle multiple product families elegantly. |
+
+Each pattern builds on the previous one, offering increasing levels of abstraction and flexibility.

@@ -1,39 +1,84 @@
-Classless Inter-Domain Routing (CIDR) is a way to allocate IP address.
-#### Classful addressing system (In the past)
+# Classless Inter-Domain Routing (CIDR)
 
-- IPv4 address consists of 32 bits with each string of period separated numbers being 8 bits represented by 0 to 255 and organizations could purchase 3 classes
-	- Class A
-		- 8 network prefix bit e.g. 44.0.0.1
-			- Where 44 is the network address pointing to network's unique identified
-			- and 0.0.1 is the host address indicating the host/individual device identifier on the network
-	- Class B
-		- 16 network prefix bit e.g. 128.16.0.2
-			- Where 128.16 is the network address
-			- 0.2 is the host address
-	- Class C
-		- 24 network prefix bit e.g. 192.168.1.100
-			- Where 192.168.1 is the network address
-			- 100 is the host address
-#### Classless address
+Classless Inter-Domain Routing (CIDR) is a method for allocating IP addresses and managing routing by introducing flexibility in defining network addresses and subnetting.
 
-- Uses variable address subnet masking (rather than supporting a fixed number of devices)
-	- Subnet mask returns address's value from IP address by turning host address into zeroes
-		- e.g. 192.0.2.0/24 is an IPv4 CIDR address where the first 24 bits e.g. 192.0.2 is the network address
-- CIDR blocks
-	- Collection of IP addresses that share the same network prefix and number of bits. A large block consists of more IP addresses and a small suffix.
-		- Internet Assigned Numbers Authority (IANA) assigns large CIDR blocks to regional internet registries (RIR)
-		- RIR assigns smaller blocks to local internet registries (LIR)
-		- LIR assign them to organizations
-		- Private users apply for CIDR blocks from their internet service providers
-- CIDR notation
-	- CIDR notation represents an IP address and a suffix that indicates network identifier bits in a specified format. For example, you could express 192.168.1.0 with a 22-bit network identifier as 192.168.1.0/22.
-- CIDR in IPv6
-	- IPv6 is a networking addressing system designed to replace IPv4. IPv6 uses a 128-bit unique identifier, which allows it to hold 1,028 times more IP addresses than IPv4.
-	- An IPv6 address consists of 8 colon-separated hexadecimal values. IPv6 allows a much larger address space to accommodate the increasing number of devices that are connecting to the internet today.
-	- Under Classless Inter-Domain Routing (CIDR), IPv6 addresses can be aggregated with prefixes of arbitrary bit length, similar to IPv4 addresses. For example, 2001:0db8:/32 is an IPv6 CIDR address, with the first 32 bits, or 2001:db8, as the network address.
-- For example, `/8` corresponds to `11111111.00000000.00000000.00000000` and the more readable subnet mask `255.0.0.0`
-- E.g. 
-	- Household home network has a standard subnet mask of 255.255.255.0 or `/24`
-		- Convert to bits : 11111111. 11111111. 11111111. 00000000 (we can count 24 numbers of 1)
-		- 254 usable IP addresses within the defined network - can connect up to 254 internet-enabled devices
-		- the 1s represent the unchanging bits of the network address and 0s represent the individual changing bits of the host address
+---
+
+## Classful Addressing System (Historical Context)
+
+In the past, IP address allocation followed a **classful addressing system** with fixed prefix lengths. An IPv4 address consists of 32 bits, divided into four 8-bit segments (octets) separated by periods, each ranging from 0 to 255.
+
+### Classes of IPv4 Addresses:
+1. **Class A**
+   - **Network Prefix**: 8 bits (e.g., `44.0.0.1`)
+     - `44`: Network address (unique identifier for the network).
+     - `0.0.1`: Host address (identifier for a device within the network).
+
+2. **Class B**
+   - **Network Prefix**: 16 bits (e.g., `128.16.0.2`)
+     - `128.16`: Network address.
+     - `0.2`: Host address.
+
+3. **Class C**
+   - **Network Prefix**: 24 bits (e.g., `192.168.1.100`)
+     - `192.168.1`: Network address.
+     - `100`: Host address.
+
+This system, while straightforward, was inefficient due to rigid prefix lengths and wasteful allocation.
+
+---
+
+## Classless Addressing System
+
+CIDR introduced **variable-length subnet masking (VLSM)**, which allows more efficient allocation of IP addresses.
+
+### Key Features:
+1. **Subnet Mask**:
+   - Defines the network and host portions of an IP address by converting host bits to zero.
+   - Example: `192.0.2.0/24`
+     - **Network Address**: First 24 bits (`192.0.2`).
+     - **Host Portion**: Remaining bits set to zero.
+
+2. **CIDR Blocks**:
+   - Represents a range of IP addresses with a shared network prefix.
+   - **Hierarchy**:
+     1. **Internet Assigned Numbers Authority (IANA)** assigns large CIDR blocks to **Regional Internet Registries (RIR)**.
+     2. **RIRs** delegate smaller blocks to **Local Internet Registries (LIR)**.
+     3. **LIRs** assign addresses to organizations, and ISPs provide CIDR blocks to private users.
+
+3. **CIDR Notation**:
+   - Combines an IP address with a suffix indicating the number of network prefix bits.
+   - Example: `192.168.1.0/22`
+     - **22-bit Prefix**: Represents the network portion of the address.
+
+---
+
+## CIDR in IPv6
+
+IPv6 is the next-generation addressing system, designed to replace IPv4 with significantly more address space. It uses **128-bit unique identifiers**, expressed as colon-separated hexadecimal values.
+
+### IPv6 Features:
+- Vastly larger address space to accommodate growing internet-connected devices.
+- Supports CIDR, enabling aggregation with variable-length prefixes like IPv4.
+  - Example: `2001:0db8:/32`
+    - **Network Address**: First 32 bits (`2001:db8`).
+
+---
+
+## Examples and Practical Applications
+
+### Subnet Masks:
+- A subnet mask defines the network and host portion of an IP address.
+- Example:
+  - `/8` corresponds to:
+    - Binary: `11111111.00000000.00000000.00000000`.
+    - Decimal: `255.0.0.0`.
+
+### Home Network Example:
+- A typical household network uses a subnet mask of `255.255.255.0` or `/24`.
+  - Binary: `11111111.11111111.11111111.00000000`.
+  - Details:
+    - **Usable IP Addresses**: 254 (devices can connect within the network).
+    - **Subnet Mask**:
+      - `1s`: Fixed network address bits.
+      - `0s`: Variable host address bits.

@@ -1,132 +1,148 @@
-#### OAuth 2.0
+# Understanding OAuth 2.0
 
-There are three main components of an OAuth 2.0 implementation :
-- Client
-	- Uses `client id` and `client secret` to identify itself to an authorization server and obtain resources from resource server
-- Authorization Server
-	- Issues a `token` to client after the client identifies itself
-- Resource Server
-	- Receives a `token` from the client and sends the resource if it is authorized
+OAuth 2.0 is a widely used protocol for authorization, enabling applications to securely access resources on behalf of a user. This article outlines the main components, grant types, and a practical implementation example using GitHub and Spring Boot.
 
-There are four main grant types of an OAuth 2.0 implementation :
-- Authorization Code Grant Type
-	- Typical Usage : Web applications (e.g. using Google account to log web users into your application)
-	- Flow :
-		- Client redirects user to endpoint of authorization server to login with the following details (client credentials) in request query
-			- `response_type=code`, `client_id`, `redirect_uri`, `scope`, `state(CSRF token)`
-		- User will then enter their user credentials
-		- If authentication was successful, the authorization server calls back on the client at the redirect_uri with
-			- an `authorization code` and `state` value
-		- Client checks that the state value is the same as the request to confirm that it is receiving the response from the authorization server
-		- Client uses the authorization code returned to obtain an access token
-			- Client sends another request to the authorization server with
-				- `code=the authorization code`, `client_id`, `client_secret`, `redirect_uri`, `grant_type=authorization_code`
-		- Server sends back an access_token
-		- Client can now use the access_token to get resource from the resource server
-		- Resource server can validate the access_token via the following steps :
-			- Authorization Server can encrpt the token using private key and then public key/cert given to Resource Server
-			- When resource server gets the token, it can then decrypt/verify signature to verify the token
-- Password Grant Type
-	- Typical Usage : Outdated and only used if client and authorization server are built and maintained by the same organization
-	- Flow :
-		- Client directly requests for access token with the following details
-			- `grant_type=password`, `client_id`, `client_secret`, `scope`, `username`, `password`
-		- Authorization server sends back an access token which can be used on resource server
-- Client Credentials Grant Type
-	- Typical Usage : Between two applications with no user involved i.e. no username/passage
-	- Flow :
-		- Client directly requests for access token with the following details
-			- `grant_type=client_credentials`, `client_id`,  `client_secret`, `scope`
-		- Authorization server sends back an access token which can be used on resource server
-- Refresh Token Grant Type
+## Components of OAuth 2.0
 
-Simple SSO (Single Sign On) example of a client for `authorization code flow` with `GitHub` as both the `authorization and resource server` and the `Spring Boot application` as the `client`.
+An OAuth 2.0 implementation involves three key components:
 
-1. First, we register our application with GitHub by filling in the form to add a new OAuth application on GitHub - we will obtain the `client id` and `secret` in return
-2. Next, we add in the dependencies for OAuth and Spring Security to the pom.xml
+### 1. Client
+- Uses `client_id` and `client_secret` to identify itself to an authorization server.
+- Obtains resources from the resource server.
 
-```
+### 2. Authorization Server
+- Issues a `token` to the client after verifying its credentials.
+
+### 3. Resource Server
+- Validates the `token` and provides resources if authorized.
+
+---
+
+## Grant Types in OAuth 2.0
+
+OAuth 2.0 supports four main grant types, each suited for different scenarios:
+
+### 1. Authorization Code Grant Type
+**Typical Usage**: Web applications (e.g., using Google login for your application).  
+**Flow**:
+1. Client redirects the user to the authorization server's endpoint, passing:
+   - `response_type=code`, `client_id`, `redirect_uri`, `scope`, and `state` (to prevent CSRF).
+2. User logs in.
+3. Authorization server redirects the user back to the client with:
+   - An `authorization code` and `state`.
+4. Client validates the state and exchanges the `authorization code` for an access token:
+   - Sends `code`, `client_id`, `client_secret`, `redirect_uri`, and `grant_type=authorization_code`.
+5. Authorization server responds with an `access_token`.
+6. Client uses the `access_token` to access resources.
+7. **Token Validation**:
+   - Authorization server encrypts the token using a private key.
+   - Resource server decrypts and validates the token using a public key.
+
+---
+
+### 2. Password Grant Type
+**Typical Usage**: Deprecated; used when the client and authorization server are maintained by the same organization.  
+**Flow**:
+1. Client requests an access token with:
+   - `grant_type=password`, `client_id`, `client_secret`, `username`, and `password`.
+2. Authorization server responds with an access token.
+
+---
+
+### 3. Client Credentials Grant Type
+**Typical Usage**: Application-to-application communication (no user involved).  
+**Flow**:
+1. Client requests an access token with:
+   - `grant_type=client_credentials`, `client_id`, `client_secret`, and `scope`.
+2. Authorization server responds with an access token.
+
+---
+
+### 4. Refresh Token Grant Type
+Allows clients to obtain a new access token using a valid refresh token.
+
+---
+
+## Implementing OAuth 2.0: A Practical Example
+
+### Using GitHub as the Authorization Server and Spring Boot as the Client
+
+**Step 1**: Register the application with GitHub:
+- Add a new OAuth application on GitHub to get the `client_id` and `client_secret`.
+
+**Step 2**: Add dependencies in `pom.xml`:
+
+```xml
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-oauth2-client</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-client</artifactId>
 </dependency>
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-security</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
 </dependency>
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-web</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 ```
 
-3. We then add in a dummy endpoint to secure for testing
+**Step 3**: Create a test endpoint:
 
-```
+```java
 @Controller
 public class MainController {
-
-	@GetMapping("/")
-	public String main() {
-		return "main.html";
-	}
+    @GetMapping("/")
+    public String main() {
+        return "main.html";
+    }
 }
 ```
 
-4. We then set the security configuration
+**Step 4**: Configure security with `oauth2Login`:
 
-We first write a configuration class that extends the WebSecurityConfigurerAdapter class and override the `configure(HttpSecurity http)` method.
-
-We then call a new method on the HttpSecurity object, the `oauth2Login()` method which adds in a new authentication filter to the filter chain which will intercept requests and apply the needed logic for OAuth2 authentication.
-
-```
+```java
 @Configuration
 public class ProjectConfig extends WebSecurityConfigurerAdapter {
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.oauth2Login();
-
-		http.authorizeRequests()
-			.anyRequests()
-			.authenticated();
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.oauth2Login();
+        http.authorizeRequests().anyRequest().authenticated();
+    }
 }
 ```
 
-5. Next, we have to implement the link between the OAuth 2 client and authorization server. 
+**Step 5**: Link the OAuth client to the authorization server:  
+Define a `ClientRegistration` object:
 
-We do this by defining the ClientRegistration contract :
-
-```
-ClientRegistration cr =
-	ClientRegistration.withRegistration("github")
-		.clientId("")
-		.clientSecret("")
-		.scope(new String[]{"read:user"})
-	    .authorizationUri("https://github.com/login/oauth/authorize")
-		.tokenUri("https://github.com/login/oauth/access_token")
-		.userInfoUri("https://api.github.com/user")
-		.userNameAttributeName("id")
-		.clientName("GitHub")
-		.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-		.redirectUriTemplate("{baseUrl}/{action}/oauth2/code/{registrationId}")
-		.build();
+```java
+ClientRegistration cr = ClientRegistration.withRegistrationId("github")
+    .clientId("")
+    .clientSecret("")
+    .scope("read:user")
+    .authorizationUri("https://github.com/login/oauth/authorize")
+    .tokenUri("https://github.com/login/oauth/access_token")
+    .userInfoUri("https://api.github.com/user")
+    .userNameAttributeName("id")
+    .clientName("GitHub")
+    .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+    .redirectUriTemplate("{baseUrl}/{action}/oauth2/code/{registrationId}")
+    .build();
 ```
 
-We can use a CommonOAuth2Provider class as shortcut since Github is a well-known Authorization server :
+Or, use a prebuilt provider for GitHub:
 
-```
-ClientRegistration cr = 
-   CommonOAuth2Provider.GITHUB
-     .getBuilder("github")
-       .clientId("")
-       .clientSecret("")
-       .build();  
+```java
+ClientRegistration cr = CommonOAuth2Provider.GITHUB
+    .getBuilder("github")
+    .clientId("")
+    .clientSecret("")
+    .build();
 ```
 
-6. There are three ways we can register this ClientRegistration object for Spring to use :
-	1. First is to add ClientRegistrationRepository as a bean
-	2. Second is to use Customizer to set ClientRegistrationRepository
-	3. Easiest way is to use Spring Boot configuration to automagically create and build ClientRegistration and ClientRegistrationRepository objects directly from application.properties
-7. We can then obtain user details from the Authentication object is which OAuth2AuthenticationToken
+**Step 6**: Register the `ClientRegistration`:
+1. As a `ClientRegistrationRepository` bean.
+2. Using a `Customizer`.
+3. Via `application.properties`.
+
+**Step 7**: Access user details from the `OAuth2AuthenticationToken`.
