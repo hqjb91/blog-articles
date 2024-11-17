@@ -2,7 +2,7 @@
 
 ## Quick Sort
 
-### Time Complexity
+### Quick Sort : Time Complexity
 - **Average case**: nlogn
   - Uses the divide-and-conquer strategy. Example with 8 elements:
     - Step 1: Split into 4 batches of 2 elements.
@@ -11,15 +11,15 @@
     - Total steps = log2(8) = 3.
 - **Worst case**: O(n^2) (occurs when the pivot selection is poor, e.g., sorted input with a bad pivot choice).
 
-### Advantages
+### Quick Sort : Advantages
 - Faster than merge sort on average, with less overhead.
 - Performs in-place sorting, requiring less memory compared to merge sort.
 
-### Disadvantages
+### Quick Sort : Disadvantages
 - Not stable: Elements with the same value might not retain their relative order.
 - Worst-case performance can degrade to O(n^2) with poor pivot choices.
 
-### Implementation in JavaScript
+### Quick Sort : Implementation in JavaScript
 ```javascript
 const testInput = [1, 9, 8, 3, 6, 5, 7, 7];
 
@@ -41,19 +41,19 @@ console.log(sortedArray); // Output: [1, 3, 5, 6, 7, 7, 8, 9]
 
 ## Merge Sort
 
-### Time Complexity
+### Merge Sort : Time Complexity
 - **Best, Worst, and Average case**: \(O(n\log n)\).
 - Uses divide-and-conquer but requires additional memory for temporary arrays.
 
-### Advantages
+### Merge Sort : Advantages
 - Stable: Retains the relative order of elements with equal values.
 - Consistent \(O(n\log n)\) performance, even for worst-case inputs.
 
-### Disadvantages
+### Merge Sort : Disadvantages
 - Slower than quick sort in practice due to additional memory usage.
 - Requires extra space for temporary arrays, which makes it less efficient for large datasets.
 
-### Implementation in JavaScript
+### Merge Sort : Implementation in JavaScript
 ```javascript
 const testInput = [1, 9, 8, 3, 6, 5, 7, 7];
 

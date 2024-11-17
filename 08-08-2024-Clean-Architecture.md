@@ -1,10 +1,10 @@
 # Clean Architecture vs Layered Architecture
 
-## **Layered Architecture**
+## Layered Architecture
 
 A standard way to architecture application is the layered architecture. Where we typically have four layers : Infrastructure {'<-'} Domain {'<-'} Business {'<-'} Presentation with the dependency following inwards and there is a close coupling between the levels
 
-## **Clean Architecture**
+## Clean Architecture
 
 Clean Architecture flips the dependency via dependency injection/inversion such that the outer layers (e.g. API/Infrastructure) depends on abstractions defined by inner core layers (e.g. Application/Domain). This makes it easy if we were to change infrastructure as it will not have as much of an impact on the core business layers
 
@@ -33,7 +33,7 @@ This results in a folder structure like this :
 	- Persistence
 - API
 
-### **Creating the Solution**
+### Implementation of Clean Architecture
 
 First we create a solution to house the project :
 

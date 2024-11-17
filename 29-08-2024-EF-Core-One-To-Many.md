@@ -1,4 +1,4 @@
-# One-To-Many Relationships (Entity Framework Core)
+# One-To-Many Relationships
 
 One-to-many relationships in EF Core are fundamental to modeling relationships between entities. Below is a breakdown based on the provided notes and **Microsoft Documentation**.
 
@@ -6,7 +6,7 @@ One-to-many relationships in EF Core are fundamental to modeling relationships b
 
 ## Required One-To-Many Relationship
 
-### Example Entities:
+### Example Entities
 ```csharp
 public class EAVEntity // Parent entity
 {
@@ -28,7 +28,7 @@ public class EAVAttribute // Child entity
 }
 ```
 
-### Key Relationship Components:
+### Key Relationship Components
 1. **Principal Entity (Parent)**:  
    - Primary Key: `EAVEntity.Id` (1).
    - Optional **Collection Navigation**: `EAVEntity.EAVAttributes` (3).
@@ -37,17 +37,17 @@ public class EAVAttribute // Child entity
    - Foreign Key: `EAVAttribute.EAVEntityId` (2).
    - Required **Reference Navigation**: `EAVAttribute.EAVEntity` (4).
 
-### Behavior:
+### Behavior
 - A **required relationship** mandates that every `EAVAttribute` (child) must be related to an `EAVEntity` (parent).  
 - The **foreign key (`EAVAttribute.EAVEntityId`) is not nullable**, ensuring the dependency.  
 - The **parent (`EAVEntity`) can exist without children**, but a **child cannot exist without a parent**.
 
-### EF Core Configuration:
+### EF Core Configuration
 
-#### Discovered by Convention:
+#### Discovered by Convention
 If naming conventions and navigation properties match EF Core's expectations, the relationship will be automatically inferred.
 
-#### Explicit Configuration:
+#### Explicit Configuration
 If conventions are not met or customization is needed, you can configure the relationship explicitly.
 
 Starting from the Parent:
@@ -78,11 +78,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ## Optional One-To-Many Relationship
 
-### Key Differences:
+### Key Differences
 - In an **optional relationship**, the **foreign key (`EAVAttribute.EAVEntityId`) is nullable**.
 - A child (`EAVAttribute`) **can exist without a parent**.
 
-### Changes in Configuration:
+### Changes in Configuration
 For optional relationships, the **`.IsRequired(false)`** method is used.
 
 **Explicit Configuration for Optional Relationships:**

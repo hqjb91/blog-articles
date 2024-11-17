@@ -8,7 +8,7 @@ Classless Inter-Domain Routing (CIDR) is a method for allocating IP addresses an
 
 In the past, IP address allocation followed a **classful addressing system** with fixed prefix lengths. An IPv4 address consists of 32 bits, divided into four 8-bit segments (octets) separated by periods, each ranging from 0 to 255.
 
-### Classes of IPv4 Addresses:
+### Classes of IPv4 Addresses
 1. **Class A**
    - **Network Prefix**: 8 bits (e.g., `44.0.0.1`)
      - `44`: Network address (unique identifier for the network).

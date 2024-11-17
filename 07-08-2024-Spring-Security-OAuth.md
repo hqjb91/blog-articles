@@ -6,14 +6,14 @@ OAuth 2.0 is a widely used protocol for authorization, enabling applications to 
 
 An OAuth 2.0 implementation involves three key components:
 
-### Client
+### Components : Client
 - Uses `client_id` and `client_secret` to identify itself to an authorization server.
 - Obtains resources from the resource server.
 
-### 2. Authorization Server
+### Components :Authorization Server
 - Issues a `token` to the client after verifying its credentials.
 
-### 3. Resource Server
+### Components :Resource Server
 - Validates the `token` and provides resources if authorized.
 
 ---

@@ -4,87 +4,34 @@
 
 The **Fluent Builder Design Pattern** is a **creational pattern** used to create complex objects step-by-step in a readable and intuitive way. 
 
-### Key Features:
-- **Encapsulation**: Construction logic is isolated in the builder class, making the codebase cleaner and easier to maintain.
-- **Fluent API**: Methods return the builder instance (`this`), enabling method chaining for better readability.
-- **Flexibility**: Supports the construction of objects requiring many parameters or customizable steps.
-- **Immutability**: Objects built using this pattern are often immutable post-creation.
+The Fluent Builder pattern is a powerful technique for creating complex objects in a clean and readable way. By using a builder class, you can encapsulate the construction logic, provide a fluent API, and enhance the maintainability of your code.
 
----
+The Fluent Builder design pattern is a creational pattern used to create complex objects step by step with a clean and readable interface.
 
-## When to Use Fluent Builder
+It is especially useful when dealing with objects that require multiple parameters or need to be built in various steps. 
 
-- When a class has **many optional parameters**.
-- When there is a need to construct objects with **different configurations**.
-- When constructors with too many arguments result in **readability issues**.
+An obvious sign that a class could benefit from this pattern is if the constructor has too many input parameters.
 
----
+## Implementation
 
-## Steps to Implement
+To utitlise the Fluent Builder Design Pattern :
+1. We define the class that will be created (e.g. WorkflowDefinition) with the various properties.
+2. We then define a builder class that will
+	1. Have the class that will be created as a property of the builder class so that it can be returned by the Build() method
+	2. Define Setter methods on the builder class that will set the relevant properties in the class that will be created 
+	3. Important thing is these setter methods will have to **return this object** so that the methods can be chained
+	4. Define a Build() method that will return the class that will be created
 
-1. **Define the Target Class**:
-   - This is the class that will be constructed (e.g., `WorkflowDefinition` in the example).
-
-2. **Create a Builder Class**:
-   - **Hold the Target Class**: A private instance of the target class is maintained in the builder.
-   - **Define Fluent Setter Methods**:
-     - Each method sets a property of the target class.
-     - Methods return the builder instance (`this`) to enable method chaining.
-   - **Provide a `Build()` Method**:
-     - Finalizes and returns the constructed object.
-
----
-
-## Example: Building a WorkflowDefinition
-
-### Target Class
-The target class represents a workflow definition with properties like ID, Name, Description, Version, and Steps.
-
-```csharp
+```
 public class WorkflowDefinition
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = "";
     public string Description { get; set; } = "";
     public int Version { get; set; }
-    public List<Step> Steps { get; set; } = new();
-}
-```
-
-### Builder Class
-
-The builder class encapsulates the logic for constructing `WorkflowDefinition` objects. It implements the following:
-
-#### Fluent Setter Methods
-These methods update specific properties of the `WorkflowDefinition` and return the builder instance:
-
-```csharp
-public IWorkflowDefinitionBuilder AddDescription(string description)
-{
-    _workflowDefinition.Description = description;
-    return this;
+    public List<Step> Steps { get; set; } = [];
 }
 
-public IWorkflowDefinitionBuilder AddName(string name)
-{
-    _workflowDefinition.Name = name;
-    return this;
-}
-```
-
-#### Build Method
-The `Build()` method assigns a unique `Guid` to the workflow definition and returns the completed object:
-
-```csharp
-public WorkflowDefinition Build()
-{
-    _workflowDefinition.Id = Guid.NewGuid();
-    return _workflowDefinition;
-}
-```
-
-### Complete Builder Class
-```csharp
 public class WorkflowDefinitionBuilder : IWorkflowDefinitionBuilder
 {
     private readonly WorkflowDefinition _workflowDefinition = new();
@@ -115,39 +62,9 @@ public class WorkflowDefinitionBuilder : IWorkflowDefinitionBuilder
 
     public WorkflowDefinition Build()
     {
-        _workflowDefinition.Id = Guid.NewGuid();
+        Guid guid = new();
+        _workflowDefinition.Id = guid;
         return _workflowDefinition;
     }
 }
 ```
-
----
-
-## Example Usage
-
-Here’s how the builder can be used to construct a `WorkflowDefinition` object:
-
-```csharp
-var builder = new WorkflowDefinitionBuilder();
-
-WorkflowDefinition workflow = builder
-    .AddName("Approval Workflow")
-    .AddDescription("A workflow for approval process")
-    .AddVersion(1)
-    .AddStep(new Step { Name = "Review" })
-    .AddStep(new Step { Name = "Approval" })
-    .Build();
-
-Console.WriteLine($"Workflow Name: {workflow.Name}, ID: {workflow.Id}");
-```
-
-### Benefits of This Approach:
-- **Readability**: The construction is intuitive and resembles natural language.
-- **Customizability**: Each method focuses on setting a specific property, making it easy to adjust parameters.
-- **Maintainability**: Changes to the construction logic are localized within the builder class.
-
----
-
-## Summary
-
-The **Fluent Builder Design Pattern** provides a clean and modular way to construct objects, especially when dealing with many parameters or complex configurations. By encapsulating the construction logic and offering a chainable API, this pattern improves code clarity and maintainability.

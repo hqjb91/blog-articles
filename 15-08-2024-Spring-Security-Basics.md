@@ -15,8 +15,6 @@ In non-Spring Boot projects, the security filter must be manually added to the `
 
 ## Setting Up a Basic Spring Security Application
 
-### Dependencies
-
 To create a minimal Spring Security project, add the following dependencies:
 
 - **Spring Web**

@@ -14,159 +14,138 @@ To achieve this, a Singleton class must:
 
 ---
 
-## Naive Singleton Implementations
+## Naive implementation
 
-### Eagerly Created Singleton
+At its very core, a Singleton is an object that can only be **instantiated once** in an entire application and every user can only access that one unique instance.
 
-An **eager Singleton** initializes the instance as soon as the class is loaded:
+Hence, at its most basic form, a singleton class must :
+1. Not allow the creation of instances by **setting the constructor private**
+2. Store the **unique instance as a private field** accessible only by the getter method
+3. **Initialize the unique instance in the field (eagerly create)** or initialize the unique instance **only in the getter method (lazily create)**
+4. **Getter method and field storing singleton must be static** as we are not using constructor to initialize
 
-```csharp
+Example for an eagerly created Singleton :
+```
 public class Singleton {
-    private static Singleton _instance = new Singleton();
-    private string _value;
 
-    private Singleton() { }
+    private static Singleton _instance = new();
+    private string _value;
 
-    public static Singleton GetInstance() {
-        return _instance;
-    }
+    private Singleton() { }
 
-    public string GetValue() {
-        return _value;
-    }
+    public static Singleton getInstance() {
+        return _instance;
+    }
 
-    public void SetValue(string value) {
-        _value = value;
-    }
+    public string getValue() {
+        return _value;
+    }
+
+    public void setValue(string value){
+        _value = value;
+    }
 }
 ```
 
-### Benefits
-- Simple to implement.
-- Thread-safe by design since the instance is created during class loading.
+However an eagerly created Singleton is potentially resource-intensive. If the initialization of the class is resource intensive (e.g. takes up significant computing resource/network traffic) we may wish to only create it when requested. Hence, we can opt for the lazily created approach.
 
-### Drawbacks
-- Resource-intensive if initialization is costly and the instance is not always used.
-
----
-
-### Lazily Created Singleton
-
-A **lazy Singleton** initializes the instance only when requested:
-
-```csharp
+Example for a lazily created Singleton :
+```
 public class Singleton {
-    private static Singleton _instance;
-    private string _value;
 
-    private Singleton() { }
+    private static Singleton _instance;
+    private string _value;
 
-    public static Singleton GetInstance() {
-        if (_instance == null) {
-            _instance = new Singleton();
-        }
-        return _instance;
-    }
+    private Singleton() { }
 
-    public string GetValue() {
-        return _value;
-    }
+    public static Singleton getInstance() {
+        if (_instance is null) _instance = new();
+        return _instance;
+    }
 
-    public void SetValue(string value) {
-        _value = value;
-    }
+    public string getValue() {
+        return _value;
+    }
+
+    public void setValue(string value){
+        _value = value;
+    }
 }
 ```
 
-### Benefits
-- Avoids unnecessary resource allocation unless the instance is actually used.
+The above implementation is sufficient for Single-Threaded application. However, unlike the eagerly created Singleton, the lazily created Singleton is not thread safe. 
 
-### Drawbacks
-- **Not thread-safe** in a multi-threaded environment. If two threads call `GetInstance()` simultaneously for the first time, multiple instances may be created, violating the Singleton guarantee.
+Imagine the case where two separate threads access the getter method for the first time. They will create two different instances of the Singleton class and hence defying the uniqueness of the Singleton design pattern.
 
----
+## Thread Safe Lazily Initialized Singleton
 
-## Thread-Safe Singleton Implementations
+One way to turn the above implementation thread safe would be to use a lock on the getter method :
 
-### Lock-Based Singleton
-
-To ensure thread safety, we can synchronize the `GetInstance()` method using a lock:
-
-```csharp
+```
 public class Singleton {
-    private static Singleton _instance;
-    private string _value;
-    private static readonly object _singletonLock = new object();
 
-    private Singleton() { }
+    private static Singleton _instance;
+    private string _value;
+    private static object singletonLock = new object();
 
-    public static Singleton GetInstance() {
-        lock (_singletonLock) {
-            if (_instance == null) {
-                _instance = new Singleton();
-            }
-        }
-        return _instance;
-    }
+    private Singleton() { }
 
-    public string GetValue() {
-        return _value;
-    }
+    public static Singleton getInstance() {
+	    lock (singletonLock)
+	    {
+	        if (_instance is null) 
+	        {
+		        _instance = new();
+		    }
+	    }
+        return _instance;
+    }
 
-    public void SetValue(string value) {
-        _value = value;
-    }
+    public string getValue() {
+        return _value;
+    }
+
+    public void setValue(string value){
+        _value = value;
+    }
 }
 ```
 
-### Benefits
-- Guarantees thread safety.
+The above implementation works and is thread safe. However, performing the lock is expensive as we can imagine the multiple threads trying to access the Singleton object via the getter method having to wait for one another.
 
-### Drawbacks
-- Locking is **expensive**, and every call to `GetInstance()` involves acquiring a lock, even if the instance is already initialized.
+We improve the performance by using the double-checked locking :
 
----
-
-### Double-Checked Locking Singleton
-
-We can optimize the lock-based implementation using **double-checked locking**, reducing unnecessary locking:
-
-```csharp
+```
 public class Singleton {
-    private static Singleton _instance;
-    private string _value;
-    private static readonly object _singletonLock = new object();
 
-    private Singleton() { }
+    private static Singleton _instance;
+    private string _value;
+    private static object singletonLock = new object();
 
-    public static Singleton GetInstance() {
-        if (_instance == null) { // First check
-            lock (_singletonLock) {
-                if (_instance == null) { // Second check
-                    _instance = new Singleton();
-                }
-            }
-        }
-        return _instance;
-    }
+    private Singleton() { }
 
-    public string GetValue() {
-        return _value;
-    }
+    public static Singleton getInstance() {
+	    if  (_instance is null) 
+	    {
+	    	lock (singletonLock)
+		    {
+		        if (_instance is null) 
+		        {
+			        _instance = new();
+			    }
+		    }
+	    }
+        return _instance;
+    }
 
-    public void SetValue(string value) {
-        _value = value;
-    }
+    public string getValue() {
+        return _value;
+    }
+
+    public void setValue(string value){
+        _value = value;
+    }
 }
 ```
 
-### How It Works
-1. **First null check**: Ensures that the lock is only acquired when the instance is uninitialized, improving performance.
-2. **Second null check**: Ensures only one instance is created, even if multiple threads pass the first check.
-
-### Benefits
-- Thread-safe.
-- Efficient after the instance is initialized, as subsequent calls avoid locking.
-
-### Drawbacks
-- Slightly more complex than simpler implementations.
+In the above pattern the first null check in the getter method is only for performance reasons as a gatekeeper to avoid the getter method being unnecessarily locked. Whereas the second inner null check is the actual check that being locked only one unique instance shall be created.
