@@ -135,6 +135,6 @@
         "title": "EF Core - One to Many Relationship",
         "subtitle": "He Quanjie Boey - 29/8/2024",
         "content": "This blog post is a summary of the microsoft guide to implementing a one-to-many relationship in Entity Framework Core (EF Core), a popular Object Relational Mapper (ORM) framework for .Net applications.",
-        "link": "/29-08-2024-EFCore-One-to-Many"
+        "link": "/29-08-2024-EF-Core-One-To-Many"
     }
 ]
