@@ -1,6 +1,13 @@
 [
     {
         "id": 1,
+        "title": "Neural Network - Summary",
+        "subtitle": "He Quanjie Boey - 24/6/2025",
+        "content": "A summary on a basic implementation of Neural Networks with example implementation using PyTorch, explaining the feed forward, backward propagation and training process.",
+        "link": "/24-06-2025-Neural-Network-Summary"
+    },
+    {
+        "id": 2,
         "title": "EF Core - One to Many Relationship",
         "subtitle": "He Quanjie Boey - 29/8/2024",
         "content": "This blog post is a summary of the microsoft guide to implementing a one-to-many relationship in Entity Framework Core (EF Core), a popular Object-Relational Mapping (ORM) framework for .NET applications.",
@@ -8,7 +15,7 @@
         "isLastItem": false
     },
     {
-        "id": 2,
+        "id": 3,
         "title": "Builder Design Pattern - C#",
         "subtitle": "He Quanjie Boey - 29/8/2024",
         "content": "The Fluent Builder pattern is a powerful technique for creating complex objects in a clean and readable way. By using a builder class, you can encapsulate the construction logic, provide a fluent API, and enhance the maintainability of your code.",
@@ -16,7 +23,7 @@
         "isLastItem": false
     },
     {
-        "id": 3,
+        "id": 4,
         "title": "Factory Design Pattern - C#",
         "subtitle": "He Quanjie Boey - 29/8/2024",
         "content": "The Factory Design Pattern is a Creational design pattern to decouple the code that creates the objects from the object itself.",
@@ -24,7 +31,7 @@
         "isLastItem": false
     },
     {
-        "id": 4,
+        "id": 5,
         "title": "Singleton Design Pattern - C#",
         "subtitle": "He Quanjie Boey - 16/8/2024",
         "content": "At its very core, a Singleton is an object that can only be instantiated once in an entire application and every user can only access that one unique instance. The article explores the implementation of a Singleton design pattern in C#. The Singleton pattern is extensively used in .Net Core notably with the Entity Framework Core DB Context and as a scope for dependency injection.",
@@ -32,7 +39,7 @@
         "isLastItem": false
     },
     {
-        "id": 5,
+        "id": 6,
         "title": "Spring Security Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Spring Security is a convention over configuration framework and the default configuration for a simple project is the HTTP Basic access authentication where the client is only required to send a username and password through the HTTP Authorization header, with the prefix Basic and Base64 encoded string of username and password.",
@@ -40,7 +47,7 @@
         "isLastItem": false
     },
     {
-        "id": 6,
+        "id": 7,
         "title": "Java Functional Programming Basics",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735820/78a47b2b-8e16-4f92-9347-138fa6db662f.png",
@@ -49,7 +56,7 @@
         "isLastItem": false
     },
     {
-        "id": 7,
+        "id": 8,
         "title": "Angular Universal",
         "subtitle": "He Quanjie Boey - 15/8/2024",
         "content": "Normally angular apps are packaged and then rendered by browser on client side. This results in poor SEO(Search engine optimization) results. Angular Universal helps resolve that by pre-rendering the application on the server-side and sent to the user directly as a static HTML file.",
@@ -57,7 +64,7 @@
         "isLastItem": false
     },
     {
-        "id": 8,
+        "id": 9,
         "title": "CSS Refresher",
         "subtitle": "He Quanjie Boey - 14/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723735649/fa27ee9b-08af-48ad-bd88-73d13a321add.png",
@@ -66,20 +73,12 @@
         "isLastItem": false
     },
     {
-        "id": 9,
+        "id": 10,
         "title": "Clean Architecture",
         "subtitle": "He Quanjie Boey - 8/8/2024",
         "media": "https://res.cloudinary.com/dldvhlymt/image/upload/v1723605089/OnionArchDiagram_zchqdz.png",
         "content": "Clean Architecture flips the dependency of traditional layered architecture. This decouples the application from the infrastructure and UI/API layers, allowing for more flexibility with regards to making infrastructural changes.",
         "link": "/08-08-2024-Clean-Architecture",
-        "isLastItem": false
-    },
-    {
-        "id": 10,
-        "title": "Implementing Custom Promises",
-        "subtitle": "He Quanjie Boey - 8/8/2024",
-        "content": "Based on an article on Medium, a summary of the article on how to implement a custom promise from scratch in Javascript.",
-        "link": "/08-08-2024-Implementing-Custom-Promises",
         "isLastItem": false
     }
 ]
